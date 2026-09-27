@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Orris Data/AI helps growing businesses turn fragmented data into actionable insights with modern analytics, Databricks Apps and Genie-powered natural language analytics." />
+  <meta name="theme-color" content="#08111f" />
+  <title>Orris Data/AI | Turn Your Data Into Decisions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06101d;
+      --panel: #0b1728;
+      --panel2: #0e1d31;
+      --text: #f5f7fb;
+      --muted: #a9b7c9;
+      --line: rgba(255,255,255,.10);
+      --cyan: #36d6e7;
+      --blue: #5b8cff;
+      --green: #55e6a5;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(54,214,231,.12), transparent 30%),
+        radial-gradient(circle at 10% 25%, rgba(91,140,255,.10), transparent 28%),
+        var(--bg);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(6,16,29,.76);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { height: 72px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-weight: 800; letter-spacing: -.04em; font-size: 20px; }
+    .logo span { color: var(--cyan); }
+    .nav-links { display:flex; gap: 26px; align-items:center; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 13px 19px; border-radius: 12px; border: 1px solid transparent;
+      font-weight: 700; font-size: 14px; cursor:pointer; transition:.2s;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--blue)); color:#03101b; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(54,214,231,.18); }
+    .btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.03); }
+    .btn-ghost:hover { background: rgba(255,255,255,.07); }
+    .hero { padding: 92px 0 70px; }
+    .hero-grid { display:grid; grid-template-columns: 1.04fr .96fr; gap: 58px; align-items:center; }
+    .eyebrow { color: var(--cyan); font-size: 13px; font-weight:800; text-transform:uppercase; letter-spacing:.12em; }
+    h1 { font-size: clamp(46px, 6vw, 76px); line-height: .98; letter-spacing:-.065em; margin: 16px 0 24px; }
+    h1 .gradient { background: linear-gradient(90deg, #fff, #74eaf2 45%, #88aaff); -webkit-background-clip:text; color:transparent; }
+    .hero p { color: var(--muted); font-size: 18px; max-width: 650px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin:30px 0; }
+    .proof { display:flex; gap:24px; flex-wrap:wrap; color:var(--muted); font-size:13px; }
+    .proof strong { color:var(--text); }
+    .hero-card {
+      position:relative; min-height: 510px; border:1px solid var(--line); border-radius:30px;
+      overflow:hidden; box-shadow:var(--shadow); background:#0a1524;
+    }
+    .hero-card img { width:100%; height:100%; object-fit:cover; opacity:.62; }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, transparent 20%, rgba(3,9,18,.94) 92%); }
+    .dashboard {
+      position:absolute; left:24px; right:24px; bottom:24px; padding:18px;
+      background:rgba(7,17,30,.86); border:1px solid rgba(255,255,255,.14); border-radius:18px;
+      backdrop-filter:blur(16px);
+    }
+    .dash-top { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+    .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
+    .kpi { background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:14px; padding:13px; }
+    .kpi b { display:block; font-size:22px; }
+    .kpi span { color:var(--muted); font-size:11px; }
+    section { padding: 92px 0; }
+    .section-head { max-width:760px; margin-bottom:38px; }
+    .section-head h2 { font-size:clamp(32px,4vw,50px); line-height:1.05; letter-spacing:-.045em; margin:10px 0 14px; }
+    .section-head p { color:var(--muted); font-size:17px; }
+    .problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { padding:26px; border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); }
+    .icon { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background:rgba(54,214,231,.10); color:var(--cyan); font-weight:800; margin-bottom:18px; }
+    .card h3 { margin:0 0 8px; font-size:20px; }
+    .card p { margin:0; color:var(--muted); font-size:14px; }
+    .solution { background:linear-gradient(180deg, rgba(255,255,255,.025), transparent); }
+    .solution-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:stretch; }
+    .tech-stack { display:grid; gap:12px; }
+    .tech { display:flex; gap:14px; align-items:flex-start; padding:18px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.025); }
+    .tech-num { color:var(--cyan); font-weight:800; font-size:13px; min-width:28px; }
+    .tech b { display:block; margin-bottom:3px; }
+    .tech span { color:var(--muted); font-size:13px; }
+    .visual {
+      border-radius:26px; overflow:hidden; border:1px solid var(--line); min-height:470px; position:relative;
+      background:#0b1728;
+    }
+    .visual img { width:100%; height:100%; object-fit:cover; opacity:.65; }
+    .visual-caption { position:absolute; left:24px; right:24px; bottom:24px; padding:20px; border-radius:18px; background:rgba(5,12,22,.85); backdrop-filter:blur(12px); }
+    .visual-caption b { display:block; font-size:18px; }
+    .visual-caption span { color:var(--muted); font-size:13px; }
+    .cases { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .case { overflow:hidden; border:1px solid var(--line); border-radius:22px; background:var(--panel); }
+    .case img { width:100%; height:230px; object-fit:cover; }
+    .case-body { padding:22px; }
+    .tag { display:inline-block; padding:6px 9px; border:1px solid var(--line); border-radius:99px; color:var(--cyan); font-size:11px; font-weight:700; margin-bottom:12px; }
+    .case-body h3 { margin:0 0 8px; }
+    .case-body p { color:var(--muted); font-size:14px; margin:0; }
+    .case-body ul { color:var(--muted); padding-left:18px; font-size:13px; }
+    .demo {
+      display:grid; grid-template-columns:1.15fr .85fr; gap:30px; align-items:center;
+      padding:30px; border:1px solid var(--line); border-radius:28px; background:linear-gradient(135deg,rgba(54,214,231,.07),rgba(91,140,255,.06));
+    }
+    .video-wrap { border-radius:18px; overflow:hidden; border:1px solid var(--line); background:#020711; aspect-ratio:16/9; position:relative; }
+    .video-wrap video { width:100%; height:100%; object-fit:cover; }
+    .video-placeholder { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(135deg,#0c1c2e,#101b35); text-align:center; padding:30px; }
+    .play { width:72px; height:72px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg,var(--cyan),var(--blue)); color:#04101b; font-size:28px; margin:auto; }
+    .demo h2 { font-size:38px; line-height:1.05; letter-spacing:-.04em; margin:8px 0 14px; }
+    .demo p { color:var(--muted); }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:26px; }
+    .step { padding:20px; border:1px solid var(--line); border-radius:16px; }
+    .step strong { color:var(--cyan); font-size:12px; }
+    .step h4 { margin:8px 0 4px; }
+    .step p { margin:0; color:var(--muted); font-size:13px; }
+    .contact { display:grid; grid-template-columns:.8fr 1.2fr; gap:40px; }
+    .contact h2 { font-size:46px; line-height:1.02; letter-spacing:-.045em; margin:10px 0 16px; }
+    .contact p { color:var(--muted); }
+    form { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:26px; border:1px solid var(--line); border-radius:24px; background:rgba(255,255,255,.035); }
+    label { display:grid; gap:7px; font-size:12px; font-weight:700; color:#dce4ef; }
+    .full { grid-column:1/-1; }
+    input, select, textarea {
+      width:100%; padding:13px 14px; border-radius:11px; border:1px solid rgba(255,255,255,.13);
+      background:#081322; color:var(--text); outline:none; font:inherit;
+    }
+    textarea { min-height:130px; resize:vertical; }
+    input:focus, select:focus, textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 3px rgba(54,214,231,.10); }
+    .form-note { grid-column:1/-1; color:#8798ad; font-size:11px; margin-top:-3px; }
+    .success { display:none; grid-column:1/-1; padding:12px; border-radius:10px; background:rgba(85,230,165,.09); color:var(--green); font-size:13px; }
+    footer { border-top:1px solid var(--line); padding:28px 0; color:#7f90a6; font-size:12px; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .mobile-menu { display:none; }
+    @media(max-width:900px) {
+      .hero-grid,.solution-grid,.demo,.contact { grid-template-columns:1fr; }
+      .problem-grid,.cases { grid-template-columns:1fr; }
+      .hero-card { min-height:430px; }
+      .nav-links { display:none; }
+      .mobile-menu { display:block; color:var(--muted); }
+    }
+    @media(max-width:620px) {
+      .container { width:min(var(--max),calc(100% - 26px)); }
+      section { padding:68px 0; }
+      .hero { padding-top:65px; }
+      .kpis,.steps,form { grid-template-columns:1fr; }
+      .full { grid-column:auto; }
+      .form-note,.success { grid-column:auto; }
+      h1 { font-size:48px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#">Orris <span>Data/AI</span></a>
+      <div class="nav-links">
+        <a href="#problems">Problems</a>
+        <a href="#solution">Solution</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#demo">Demo</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn btn-primary" href="#contact">Book a Discovery Call</a>
+      <span class="mobile-menu">Menu</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Data • AI • Automation</div>
+          <h1>Turn scattered data into <span class="gradient">business decisions.</span></h1>
+          <p>
+            Orris Data/AI helps growing companies connect operational data, automate reporting,
+            and give business teams a simple way to ask questions and act on trusted insights.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Get a Free Data Assessment →</a>
+            <a class="btn btn-ghost" href="#demo">See the Demo</a>
+          </div>
+          <div class="proof">
+            <span><strong>✓</strong> Executive-ready dashboards</span>
+            <span><strong>✓</strong> Natural-language analytics</span>
+            <span><strong>✓</strong> Built for governed data</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85" alt="Business analytics dashboard">
+          <div class="hero-overlay"></div>
+          <div class="dashboard">
+            <div class="dash-top"><span>Orris Business Intelligence</span><span>Live analytics</span></div>
+            <div class="kpis">
+              <div class="kpi"><b>$2.84M</b><span>Revenue</span></div>
+              <div class="kpi"><b>91%</b><span>On-time projects</span></div>
+              <div class="kpi"><b>14.2%</b><span>Gross margin</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problems">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">The problem</div>
+          <h2>Your business has data. Your team still has questions.</h2>
+          <p>Many growing companies have information spread across Excel, accounting systems, CRMs, project tools and operational databases. The problem is turning it into a decision quickly.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Reports take too long</h3>
+            <p>Teams spend hours exporting, cleaning and combining spreadsheets before management can see what happened.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Data lives in silos</h3>
+            <p>Sales, finance, operations and project data often tell different stories because definitions and sources are disconnected.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Questions need an analyst</h3>
+            <p>A simple question such as “Which projects are at risk?” can become a ticket, a spreadsheet exercise and a meeting.</p>
+          </article>
+          <article class="card">
+            <div class="icon">04</div>
+            <h3>Problems are discovered late</h3>
+            <p>Margin erosion, schedule delays, invoice issues and underperforming customers can remain hidden until the monthly review.</p>
+          </article>
+          <article class="card">
+            <div class="icon">05</div>
+            <h3>AI without business context</h3>
+            <p>Generic AI can sound convincing without understanding your KPIs, definitions, permissions or operational reality.</p>
+          </article>
+          <article class="card">
+            <div class="icon">06</div>
+            <h3>Technology feels too expensive</h3>
+            <p>Smaller teams often assume modern analytics requires a large data team, complex infrastructure and long implementation cycles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" class="solution">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">The Orris approach</div>
+          <h2>From spreadsheets and systems to one intelligent business layer.</h2>
+          <p>We design a practical data foundation and then place the experience where business users need it: dashboards, custom apps and natural-language analytics.</p>
+        </div>
+
+        <div class="solution-grid">
+          <div class="tech-stack">
+            <div class="tech"><div class="tech-num">01</div><div><b>Connect</b><span>Bring together spreadsheets, SQL databases, APIs, CRM, accounting and operational data.</span></div></div>
+            <div class="tech"><div class="tech-num">02</div><div><b>Structure</b><span>Build reliable data models, business definitions, KPIs and reusable pipelines.</span></div></div>
+            <div class="tech"><div class="tech-num">03</div><div><b>Visualize</b><span>Deliver decision-ready dashboards and tailored business applications.</span></div></div>
+            <div class="tech"><div class="tech-num">04</div><div><b>Ask</b><span>Enable business users to ask questions in natural language through Genie.</span></div></div>
+            <div class="tech"><div class="tech-num">05</div><div><b>Act</b><span>Turn insights into workflows, alerts and operational actions where appropriate.</span></div></div>
+          </div>
+
+          <div class="visual">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=85" alt="Team reviewing business analytics">
+            <div class="visual-caption">
+              <b>Built around the questions your business actually asks.</b>
+              <span>Example: “Which projects are trending over budget, why, and what should we review first?”</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="use-cases">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Real business use cases</div>
+          <h2>Start with one painful problem. Expand from there.</h2>
+          <p>Orris Data/AI can be adapted to the operational reality of construction, professional services, retail, distribution, finance and other data-driven businesses.</p>
+        </div>
+
+        <div class="cases">
+          <article class="case">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85" alt="Construction project">
+            <div class="case-body">
+              <span class="tag">Construction & Projects</span>
+              <h3>Know which projects need attention before the review.</h3>
+              <p>Combine budgets, labor, invoices, subcontractors, tasks, delays and safety data into one operating view.</p>
+              <ul>
+                <li>Budget vs. actual cost</li>
+                <li>Labor and productivity trends</li>
+                <li>Schedule and delay risk</li>
+                <li>Subcontractor and invoice visibility</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="case">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=85" alt="Business team">
+            <div class="case-body">
+              <span class="tag">Finance & Management</span>
+              <h3>Replace recurring spreadsheet reporting with an always-current view.</h3>
+              <p>Give leaders a consistent picture of revenue, margin, expenses, cash-related indicators and business performance.</p>
+              <ul>
+                <li>Executive KPI dashboard</li>
+                <li>Actual vs. budget</li>
+                <li>Margin and variance analysis</li>
+                <li>Natural-language follow-up questions</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="case">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85" alt="Retail analytics">
+            <div class="case-body">
+              <span class="tag">Sales & Customers</span>
+              <h3>Find what is driving sales without waiting for a monthly report.</h3>
+              <p>Connect sales, customer and product information so teams can explore performance by segment, location and period.</p>
+              <ul>
+                <li>Sales performance</li>
+                <li>Customer segmentation</li>
+                <li>Product and location trends</li>
+                <li>Ad-hoc business questions</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="case">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85" alt="Operations team">
+            <div class="case-body">
+              <span class="tag">Operations</span>
+              <h3>Move from reactive reporting to operational intelligence.</h3>
+              <p>Surface exceptions and trends across operational data and put the right information in front of the people who need it.</p>
+              <ul>
+                <li>Operational scorecards</li>
+                <li>Exception monitoring</li>
+                <li>Trend analysis</li>
+                <li>Custom operational apps</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="container">
+        <div class="demo">
+          <div class="video-wrap">
+            <!-- Replace demo-video.mp4 with your own video when ready -->
+            <video id="demoVideo" controls poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80">
+              <source src="demo-video.mp4" type="video/mp4">
+            </video>
+            <div class="video-placeholder" id="videoPlaceholder">
+              <div>
+                <div class="play">▶</div>
+                <h3>Your Orris Data/AI Demo</h3>
+                <p>Upload your demo-video.mp4 to this folder and this section is ready to play it.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="eyebrow">See it in action</div>
+            <h2>Ask your data. Understand the answer. Take action.</h2>
+            <p>Show prospects how a business question can move from a dashboard to natural-language exploration and a focused operational application.</p>
+            <div class="steps">
+              <div class="step"><strong>01</strong><h4>Ask</h4><p>“Which projects are over budget?”</p></div>
+              <div class="step"><strong>02</strong><h4>Explore</h4><p>Drill into the data and underlying metrics.</p></div>
+              <div class="step"><strong>03</strong><h4>Act</h4><p>Turn the insight into the next business action.</p></div>
+            </div>
+            <div style="margin-top:22px">
+              <a class="btn btn-primary" href="#contact">Request a Personalized Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why this architecture</div>
+          <h2>Modern analytics without making your business team learn the platform.</h2>
+          <p>Databricks Apps can provide a custom interface on the Databricks platform, while Genie provides a natural-language experience for exploring governed business data. Orris focuses on translating those capabilities into a useful business workflow. citeturn0search0turn0search6</p>
+        </div>
+        <div class="problem-grid">
+          <article class="card"><div class="icon">AI</div><h3>Natural language</h3><p>Business users can ask questions about curated data using ordinary business language and receive SQL-backed results and visualizations.</p></article>
+          <article class="card"><div class="icon">APP</div><h3>Custom applications</h3><p>Build focused interfaces for project tracking, operational analytics, reporting, data entry and AI-enabled workflows.</p></article>
+          <article class="card"><div class="icon">GOV</div><h3>Governed data</h3><p>Design the experience around governed datasets, permissions and business definitions rather than disconnected spreadsheets.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <div>
+          <div class="eyebrow">Start the conversation</div>
+          <h2>Let’s find the first business problem worth solving.</h2>
+          <p>Tell us where your data is today, what takes too much manual effort, and what decisions are difficult to make. We’ll use that information to identify a practical starting point.</p>
+          <p><strong>Good starting questions:</strong></p>
+          <ul style="color:var(--muted);padding-left:18px">
+            <li>How much time does your team spend preparing reports?</li>
+            <li>Which KPI is hardest to trust?</li>
+            <li>What question do managers repeatedly ask?</li>
+            <li>Where are delays, cost overruns or revenue leaks discovered too late?</li>
+          </ul>
+        </div>
+
+        <form id="contactForm">
+          <label>Full name<input required name="name" placeholder="Jane Smith"></label>
+          <label>Company<input required name="company" placeholder="Company name"></label>
+          <label>Business email<input required type="email" name="email" placeholder="jane@company.com"></label>
+          <label>Phone (optional)<input name="phone" placeholder="+1 519 ..."></label>
+          <label class="full">What do you want to improve?
+            <select name="interest">
+              <option>Automated reporting</option>
+              <option>Executive dashboard</option>
+              <option>Data integration</option>
+              <option>Genie / natural-language analytics</option>
+              <option>Custom Databricks App</option>
+              <option>AI / automation</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label class="full">Tell us about your challenge<textarea required name="message" placeholder="Example: We currently combine Excel reports from 4 systems every month..."></textarea></label>
+          <div class="form-note">By submitting, your email client will open with the inquiry pre-filled. Change the destination email in the JavaScript configuration before publishing.</div>
+          <div class="success" id="success">Your inquiry is ready. Your email application should open now.</div>
+          <button class="btn btn-primary full" type="submit">Contact Orris Data/AI →</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Orris Data/AI. Data • AI • Business Intelligence.</span>
+      <span>Built for practical business outcomes.</span>
+    </div>
+  </footer>
+
+  <script>
+    // CHANGE THIS before publishing:
+    const CONTACT_EMAIL = "YOUR_EMAIL@example.com";
+
+    const form = document.getElementById("contactForm");
+    const success = document.getElementById("success");
+    const video = document.getElementById("demoVideo");
+    const placeholder = document.getElementById("videoPlaceholder");
+
+    video.addEventListener("loadeddata", () => placeholder.style.display = "none");
+    video.addEventListener("error", () => placeholder.style.display = "grid");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const subject = encodeURIComponent(`Orris Data/AI inquiry — ${data.get("company")}`);
+      const body = encodeURIComponent(
+`Name: ${data.get("name")}
+Company: ${data.get("company")}
+Email: ${data.get("email")}
+Phone: ${data.get("phone")}
+Interest: ${data.get("interest")}
+
+Challenge:
+${data.get("message")}`
+      );
+
+      if (CONTACT_EMAIL === "YOUR_EMAIL@example.com") {
+        alert("Before publishing, replace YOUR_EMAIL@example.com in script.js/index.html with the email address where you want to receive inquiries.");
+        return;
+      }
+
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      success.style.display = "block";
+    });
+  </script>
+</body>
+</html>
