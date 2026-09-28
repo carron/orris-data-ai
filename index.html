@@ -46,7 +46,16 @@
       border-bottom: 1px solid var(--line);
     }
     .nav-inner { height: 72px; display:flex; align-items:center; justify-content:space-between; }
-    .logo { font-weight: 800; letter-spacing: -.04em; font-size: 20px; }
+    .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
     .logo span { color: var(--cyan); }
     .nav-links { display:flex; gap: 26px; align-items:center; font-size: 14px; color: var(--muted); }
     .nav-links a:hover { color: var(--text); }
@@ -170,7 +179,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a class="logo" href="#">
-        <img src="images/logo.png" alt="Orris Data AI">
+        <img src="images/logovertical.png" alt="Orris Data AI">
       </a>
       <div class="nav-links">
         <a href="#problems">Problems</a>
