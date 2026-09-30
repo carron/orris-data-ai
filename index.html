@@ -40,25 +40,95 @@
     img { max-width: 100%; display: block; }
     .container { width: min(var(--max), calc(100% - 40px)); margin: auto; }
     .nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(6,16,29,.76);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner { height: 72px; display:flex; align-items:center; justify-content:space-between; }
-    .logo {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(6, 16, 29, 0.92);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid var(--line);
+}
+    .nav-inner {
+
+  width: min(
+    var(--max),
+    calc(100% - 40px)
+  );
+
+  min-height: 76px;
+
+  margin: 0 auto;
+
   display: flex;
+
   align-items: center;
+
+  justify-content: space-between;
+
+  gap: 24px;
+}
+    .logo {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
 }
 
+
 .logo img {
-  height: 48px;
-  width: auto;
+
   display: block;
+
+  width: auto;
+
+  height: 52px;
+
+  max-width: 260px;
+
+  object-fit: contain;
 }
     .logo span { color: var(--cyan); }
-    .nav-links { display:flex; gap: 26px; align-items:center; font-size: 14px; color: var(--muted); }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 28px;
+
+  margin-left: auto;
+}
+    .nav-links a {
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+    .nav-links a:hover {
+
+  color: var(--text);
+
+  transform: translateY(-1px);
+}
     .btn {
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
       padding: 13px 19px; border-radius: 12px; border: 1px solid transparent;
@@ -184,13 +254,178 @@
     .success { display:none; grid-column:1/-1; padding:12px; border-radius:10px; background:rgba(85,230,165,.09); color:var(--green); font-size:13px; }
     footer { border-top:1px solid var(--line); padding:28px 0; color:#7f90a6; font-size:12px; }
     .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-    .mobile-menu { display:none; }
+    .mobile-menu {
+
+  display: none;
+
+  width: 44px;
+
+  height: 44px;
+
+  padding: 0;
+
+  border: 1px solid var(--line);
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.04);
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+    .mobile-menu span {
+
+  display: block;
+
+  width: 20px;
+
+  height: 2px;
+
+  background: var(--text);
+
+  border-radius: 2px;
+
+  transition: 0.25s ease;
+}
+    .mobile-nav {
+
+  display: none;
+
+  width: 100%;
+
+  padding: 18px 20px 24px;
+
+  background: rgba(6, 16, 29, 0.98);
+
+  border-top: 1px solid var(--line);
+}
+
+
+.mobile-nav a {
+
+  display: block;
+
+  padding: 14px 4px;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  border-bottom: 1px solid var(--line);
+}
+    .mobile-nav .mobile-cta {
+
+  margin-top: 18px;
+
+  text-align: center;
+
+  border: none;
+
+  padding: 14px 18px;
+}
+    
+.mobile-nav.active {
+
+  display: block;
+}
+
     @media(max-width:900px) {
       .hero-grid,.solution-grid,.demo,.contact { grid-template-columns:1fr; }
       .problem-grid,.cases { grid-template-columns:1fr; }
       .hero-card { min-height:430px; }
       .nav-links { display:none; }
-      .mobile-menu { display:block; color:var(--muted); }
+      .mobile-menu {
+
+  display: none;
+
+  width: 44px;
+
+  height: 44px;
+
+  padding: 0;
+
+  border: 1px solid var(--line);
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.04);
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+      .mobile-menu span {
+
+  display: block;
+
+  width: 20px;
+
+  height: 2px;
+
+  background: var(--text);
+
+  border-radius: 2px;
+
+  transition: 0.25s ease;
+}
+      .mobile-nav {
+
+  display: none;
+
+  width: 100%;
+
+  padding: 18px 20px 24px;
+
+  background: rgba(6, 16, 29, 0.98);
+
+  border-top: 1px solid var(--line);
+}
+
+
+.mobile-nav a {
+
+  display: block;
+
+  padding: 14px 4px;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  border-bottom: 1px solid var(--line);
+}
+      .mobile-nav .mobile-cta {
+
+  margin-top: 18px;
+
+  text-align: center;
+
+  border: none;
+
+  padding: 14px 18px;
+}
+
     }
     @media(max-width:620px) {
       .container { width:min(var(--max),calc(100% - 26px)); }
@@ -205,21 +440,70 @@
 </head>
 <body>
   <nav class="nav">
-    <div class="container nav-inner">
-      <a class="logo" href="#">
-        <img src="images/logovertical.png" alt="Orris Data AI">
-      </a>
-      <div class="nav-links">
-        <a href="#problems">Problems</a>
-        <a href="#solution">Solution</a>
-        <a href="#use-cases">Use Cases</a>
-        <a href="#demo">Demo</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a class="btn btn-primary" href="#contact">Book a Discovery Call</a>
-      <span class="mobile-menu">Menu</span>
+  <div class="container nav-inner">
+
+    <!-- Logo -->
+    <a class="logo" href="#top">
+      <img
+        src="images/logo-horizontal.png"
+        alt="Orris Data AI"
+      >
+    </a>
+
+    <!-- Desktop navigation -->
+    <div class="nav-links" id="navLinks">
+
+      <a href="#problems">Problems</a>
+
+      <a href="#solution">Solution</a>
+
+      <a href="#use-cases">Use Cases</a>
+
+      <a href="#demo">Demo</a>
+
+      <a href="#contact">Contact</a>
+
     </div>
-  </nav>
+
+    <!-- Desktop CTA -->
+
+
+    <!-- Mobile menu button -->
+    <button
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile navigation -->
+  <div class="mobile-nav" id="mobileNav">
+
+    <a href="#problems">Problems</a>
+
+    <a href="#solution">Solution</a>
+
+    <a href="#use-cases">Use Cases</a>
+
+    <a href="#demo">Demo</a>
+
+    <a href="#contact">Contact</a>
+
+    <a
+      class="btn btn-primary mobile-cta"
+      href="#contact"
+    >
+      Book a Discovery Call
+    </a>
+
+  </div>
+</nav>
 
   <main>
     <section class="hero">
