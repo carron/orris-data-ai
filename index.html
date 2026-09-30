@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Orris Data/AI helps growing businesses turn fragmented data into actionable insights with modern analytics, Databricks Apps and Genie-powered natural language analytics." />
+  <meta name="description" content="Orris Data/AI helps small and mid-sized businesses turn scattered data into faster decisions, lower operating costs, and better visibility into where money is being made or lost." />
   <meta name="theme-color" content="#08111f" />
   <title>Orris Data/AI | Turn Your Data Into Decisions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://images.unsplash.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #06101d;
@@ -151,7 +150,7 @@
       position:relative; min-height: 510px; border:1px solid var(--line); border-radius:30px;
       overflow:hidden; box-shadow:var(--shadow); background:#0a1524;
     }
-    .hero-card img { width:100%; height:100%; object-fit:cover; opacity:.62; }
+    .hero-card img { width:100%; height:100%; object-fit:contain; object-position:center; opacity:1; background:#08111f; }
     .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, transparent 20%, rgba(3,9,18,.94) 92%); }
     .dashboard {
       position:absolute; left:24px; right:24px; bottom:24px; padding:18px;
@@ -345,34 +344,7 @@
       .problem-grid,.cases { grid-template-columns:1fr; }
       .hero-card { min-height:430px; }
       .nav-links { display:none; }
-      .mobile-menu {
 
-  display: none;
-
-  width: 44px;
-
-  height: 44px;
-
-  padding: 0;
-
-  border: 1px solid var(--line);
-
-  border-radius: 10px;
-
-  background: rgba(255,255,255,.04);
-
-  cursor: pointer;
-
-  flex-shrink: 0;
-
-  align-items: center;
-
-  justify-content: center;
-
-  flex-direction: column;
-
-  gap: 5px;
-}
       .mobile-menu span {
 
   display: block;
@@ -436,6 +408,153 @@
       .form-note,.success { grid-column:auto; }
       h1 { font-size:48px; }
     }
+
+    /* Responsive navigation and layout */
+    .nav-cta { flex-shrink: 0; white-space: nowrap; }
+    .mobile-menu { display:none; }
+
+    @media (max-width: 1080px) {
+      .nav-inner { gap: 14px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 13px; }
+      .nav-cta { padding: 11px 14px; font-size: 13px; }
+      .logo img { height: 46px; max-width: 190px; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner {
+        min-height: 70px;
+        width: min(var(--max), calc(100% - 32px));
+      }
+      .nav-links,
+      .nav-cta { display:none; }
+      .mobile-menu {
+        display:flex;
+        margin-left:auto;
+      }
+      .hero-grid,
+      .solution-grid,
+      .demo,
+      .contact { grid-template-columns:1fr; }
+      .problem-grid,
+      .cases { grid-template-columns:repeat(2,1fr); }
+      .hero-card { min-height:430px; }
+      .demo { padding:24px; }
+      .contact { gap:28px; }
+    }
+
+
+    .hero-card {
+      min-height:0;
+      height:auto;
+      aspect-ratio: 4 / 5;
+      border-radius:22px;
+      overflow:hidden;
+      background:#f7fafc;
+    }
+    .hero-benefits-video {
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      background:#f7fafc;
+    }
+
+    @media (max-width: 680px) {
+      .container { width:min(var(--max), calc(100% - 28px)); }
+      .nav-inner { width:calc(100% - 28px); min-height:64px; }
+      .logo img { height:42px; max-width:170px; }
+      .mobile-menu { width:42px; height:42px; }
+      .mobile-nav { padding:14px 14px 20px; }
+      .hero { padding:56px 0 52px; }
+      section { padding:64px 0; }
+      h1 {
+        font-size:clamp(40px, 12vw, 54px);
+        letter-spacing:-.055em;
+      }
+      .hero p { font-size:16px; }
+      .hero-actions { flex-direction:column; align-items:stretch; }
+      .hero-actions .btn { width:100%; }
+      .proof { display:grid; gap:9px; }
+      .hero-card {
+        min-height:0;
+        height:auto;
+        aspect-ratio: 4 / 5;
+        border-radius:22px;
+      }
+      .hero-card img {
+        display:none;
+      }
+      .hero-card .mobile-benefits-video {
+        display:block;
+      }
+      .mobile-benefits-video {
+        display:none;
+      }
+      .hero-card .hero-overlay,
+      .hero-card .dashboard {
+        display:none;
+      }
+
+      /* Mobile: replace the executive screenshot with a short silent benefits video */
+      .mobile-benefits-video {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center;
+        display:block;
+        background:#08111f;
+      }
+      .hero-card > img {
+        display:none;
+      }
+      .kpis { grid-template-columns:1fr; gap:7px; }
+      .kpi { padding:10px; }
+      .kpi b { font-size:18px; }
+      .kpi span { font-size:10px; }
+      .problem-grid,
+      .cases { grid-template-columns:1fr; }
+      .card { padding:22px; }
+      .visual { min-height:360px; }
+      .visual-caption { left:14px; right:14px; bottom:14px; padding:16px; }
+      .case img { height:190px; }
+      .demo { padding:14px; gap:24px; border-radius:22px; }
+      .video-wrap { border-radius:14px; }
+      .demo h2,
+      .contact h2 { font-size:34px; }
+      .steps { grid-template-columns:1fr; }
+      form { grid-template-columns:1fr; padding:20px; }
+      .full,
+      .form-note,
+      .success { grid-column:auto; }
+      input, select, textarea { font-size:16px; } /* prevents iOS zoom */
+      footer { padding:22px 0; }
+      .footer-inner { flex-direction:column; gap:8px; }
+    }
+
+    @media (max-width: 380px) {
+      .container { width:calc(100% - 22px); }
+      .nav-inner { width:calc(100% - 22px); }
+      .logo img { height:38px; max-width:150px; }
+      .hero { padding-top:46px; }
+      .hero-card { aspect-ratio: 4 / 5; }
+      h1 { font-size:38px; }
+    }
+
+
+    .mobile-nav {
+      position: relative;
+      z-index: 1001;
+    }
+
+    .mobile-menu {
+      position: relative;
+      z-index: 1002;
+    }
+
   </style>
 </head>
 <body>
@@ -461,12 +580,13 @@
 
       <a href="#demo">Demo</a>
 
+      <a href="#business-value">Value</a>
+
       <a href="#contact">Contact</a>
 
     </div>
 
-    <!-- Desktop CTA -->
-
+    <a class="btn btn-primary nav-cta" href="#contact">Free Data Assessment</a>
 
     <!-- Mobile menu button -->
     <button
@@ -509,35 +629,34 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Data • AI • Automation</div>
-          <h1>Turn scattered data into <span class="gradient">business decisions.</span></h1>
+          <div class="eyebrow">Business Intelligence • AI • Automation</div>
+          <h1>Find the problems in your business <span class="gradient">before they become expensive.</span></h1>
           <p>
-            Orris Data/AI helps growing companies connect operational data, automate reporting,
-            and give business teams a simple way to ask questions and act on trusted insights.
+            Orris turns scattered business data into automated reporting, clear KPIs and practical answers —
+            so small and mid-sized teams spend less time preparing reports and more time making decisions.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Get a Free Data Assessment →</a>
             <a class="btn btn-ghost" href="#demo">See the Demo</a>
           </div>
           <div class="proof">
-            <span><strong>✓</strong> Executive-ready dashboards</span>
-            <span><strong>✓</strong> Natural-language analytics</span>
-            <span><strong>✓</strong> Built for governed data</span>
+            <span><strong>✓</strong> Less manual reporting</span>
+            <span><strong>✓</strong> Faster answers from your data</span>
+            <span><strong>✓</strong> Earlier visibility into costly problems</span>
           </div>
         </div>
 
         <div class="hero-card">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85" alt="Business analytics dashboard">
-          <div class="hero-overlay"></div>
-          <div class="dashboard">
-            <div class="dash-top"><span>Orris Business Intelligence</span><span>Live analytics</span></div>
-            <div class="kpis">
-              <div class="kpi"><b>$2.84M</b><span>Revenue</span></div>
-              <div class="kpi"><b>91%</b><span>On-time projects</span></div>
-              <div class="kpi"><b>14.2%</b><span>Gross margin</span></div>
-            </div>
-          </div>
-        </div>
+        <video class="mobile-benefits-video hero-benefits-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Short overview of the business benefits of Orris Data/AI">
+          <source src="orris_mobile_benefits_12s.mp4" type="video/mp4">
+        </video>
+      </div>
       </div>
     </section>
 
@@ -545,39 +664,39 @@
       <div class="container">
         <div class="section-head">
           <div class="eyebrow">The problem</div>
-          <h2>Your business has data. Your team still has questions.</h2>
-          <p>Many growing companies have information spread across Excel, accounting systems, CRMs, project tools and operational databases. The problem is turning it into a decision quickly.</p>
+          <h2>Your business has data. But getting a clear answer takes too much work.</h2>
+          <p>When information is spread across spreadsheets, accounting systems, CRMs and operational tools, managers lose time building reports instead of running the business.</p>
         </div>
         <div class="problem-grid">
           <article class="card">
             <div class="icon">01</div>
-            <h3>Reports take too long</h3>
-            <p>Teams spend hours exporting, cleaning and combining spreadsheets before management can see what happened.</p>
+            <h3>Too much time goes into reporting</h3>
+            <p>Your team exports, cleans and combines data before management can even see what happened.</p>
           </article>
           <article class="card">
             <div class="icon">02</div>
-            <h3>Data lives in silos</h3>
-            <p>Sales, finance, operations and project data often tell different stories because definitions and sources are disconnected.</p>
+            <h3>Your numbers live in silos</h3>
+            <p>Sales, finance, operations and project data can tell different stories when sources and definitions are disconnected.</p>
           </article>
           <article class="card">
             <div class="icon">03</div>
-            <h3>Questions need an analyst</h3>
-            <p>A simple question such as “Which projects are at risk?” can become a ticket, a spreadsheet exercise and a meeting.</p>
+            <h3>Simple questions become projects</h3>
+            <p>A question like “Which projects are at risk?” can become a ticket, a spreadsheet exercise and a meeting.</p>
           </article>
           <article class="card">
             <div class="icon">04</div>
-            <h3>Problems are discovered late</h3>
-            <p>Margin erosion, schedule delays, invoice issues and underperforming customers can remain hidden until the monthly review.</p>
+            <h3>Problems are found too late</h3>
+            <p>Margin erosion, delays, invoice issues and underperforming customers can stay hidden until the monthly review.</p>
           </article>
           <article class="card">
             <div class="icon">05</div>
-            <h3>AI without business context</h3>
-            <p>Generic AI can sound convincing without understanding your KPIs, definitions, permissions or operational reality.</p>
+            <h3>AI needs your business context</h3>
+            <p>Generic AI is not enough if it does not understand your KPIs, business definitions and operational reality.</p>
           </article>
           <article class="card">
             <div class="icon">06</div>
-            <h3>Technology feels too expensive</h3>
-            <p>Smaller teams often assume modern analytics requires a large data team, complex infrastructure and long implementation cycles.</p>
+            <h3>Analytics feels out of reach</h3>
+            <p>Growing teams often assume useful analytics requires a large data team, complex infrastructure and a long implementation.</p>
           </article>
         </div>
       </div>
@@ -587,17 +706,17 @@
       <div class="container">
         <div class="section-head">
           <div class="eyebrow">The Orris approach</div>
-          <h2>From spreadsheets and systems to one intelligent business layer.</h2>
-          <p>We design a practical data foundation and then place the experience where business users need it: dashboards, custom apps and natural-language analytics.</p>
+          <h2>From scattered data to one clear view of your business.</h2>
+          <p>We connect the systems you already use, automate the reporting work and put useful answers in front of the people who need them.</p>
         </div>
 
         <div class="solution-grid">
           <div class="tech-stack">
-            <div class="tech"><div class="tech-num">01</div><div><b>Connect</b><span>Bring together spreadsheets, SQL databases, APIs, CRM, accounting and operational data.</span></div></div>
-            <div class="tech"><div class="tech-num">02</div><div><b>Structure</b><span>Build reliable data models, business definitions, KPIs and reusable pipelines.</span></div></div>
-            <div class="tech"><div class="tech-num">03</div><div><b>Visualize</b><span>Deliver decision-ready dashboards and tailored business applications.</span></div></div>
-            <div class="tech"><div class="tech-num">04</div><div><b>Ask</b><span>Enable business users to ask questions in natural language through AI</span></div></div>
-            <div class="tech"><div class="tech-num">05</div><div><b>Act</b><span>Turn insights into workflows, alerts and operational actions where appropriate.</span></div></div>
+            <div class="tech"><div class="tech-num">01</div><div><b>Connect</b><span>Connect the spreadsheets, accounting systems, CRM, databases and operational tools you already use.</span></div></div>
+            <div class="tech"><div class="tech-num">02</div><div><b>Structure</b><span>Create consistent KPIs and trusted business definitions so everyone works from the same numbers.</span></div></div>
+            <div class="tech"><div class="tech-num">03</div><div><b>Visualize</b><span>Replace recurring manual reports with dashboards and focused business tools.</span></div></div>
+            <div class="tech"><div class="tech-num">04</div><div><b>Ask</b><span>Let managers ask business questions in plain language and explore the answers.</span></div></div>
+            <div class="tech"><div class="tech-num">05</div><div><b>Act</b><span>Surface exceptions, alerts and next actions so insights can lead to action.</span></div></div>
           </div>
 
           <div class="visual">
@@ -615,8 +734,8 @@
       <div class="container">
         <div class="section-head">
           <div class="eyebrow">Real business use cases</div>
-          <h2>Start with one painful problem. Expand from there.</h2>
-          <p>Orris Data/AI can be adapted to the operational reality of construction, professional services, retail, distribution, finance and other data-driven businesses.</p>
+          <h2>Start with one expensive problem. Then expand.</h2>
+          <p>Orris can start with the business problem costing your team the most time or money, then expand as your needs grow.</p>
         </div>
 
         <div class="cases">
@@ -624,7 +743,7 @@
             <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85" alt="Construction project">
             <div class="case-body">
               <span class="tag">Construction & Projects</span>
-              <h3>Know which projects need attention before the review.</h3>
+              <h3>Know which projects are losing money before the review.</h3>
               <p>Combine budgets, labor, invoices, subcontractors, tasks, delays and safety data into one operating view.</p>
               <ul>
                 <li>Budget vs. actual cost</li>
@@ -639,7 +758,7 @@
             <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=85" alt="Business team">
             <div class="case-body">
               <span class="tag">Finance & Management</span>
-              <h3>Replace recurring spreadsheet reporting with an always-current view.</h3>
+              <h3>Stop rebuilding financial reports every month.</h3>
               <p>Give leaders a consistent picture of revenue, margin, expenses, cash-related indicators and business performance.</p>
               <ul>
                 <li>Executive KPI dashboard</li>
@@ -654,7 +773,7 @@
             <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85" alt="Retail analytics">
             <div class="case-body">
               <span class="tag">Sales & Customers</span>
-              <h3>Find what is driving sales without waiting for a monthly report.</h3>
+              <h3>See what is driving sales without waiting for a monthly report.</h3>
               <p>Connect sales, customer and product information so teams can explore performance by segment, location and period.</p>
               <ul>
                 <li>Sales performance</li>
@@ -669,7 +788,7 @@
             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85" alt="Operations team">
             <div class="case-body">
               <span class="tag">Operations</span>
-              <h3>Move from reactive reporting to operational intelligence.</h3>
+              <h3>Find operational problems before they become expensive.</h3>
               <p>Surface exceptions and trends across operational data and put the right information in front of the people who need it.</p>
               <ul>
                 <li>Operational scorecards</li>
@@ -695,19 +814,19 @@
               <div>
                 <div class="play">▶</div>
                 <h3>Your Orris Data/AI Demo</h3>
-                <p>Upload your demo-video.mp4 to this folder and this section is ready to play it.</p>
+                <p>See how Orris turns a business question into an actionable answer.</p>
               </div>
             </div>
           </div>
 
           <div>
             <div class="eyebrow">See it in action</div>
-            <h2>Ask your data. Understand the answer. Take action.</h2>
-            <p>Show prospects how a business question can move from a dashboard to natural-language exploration and a focused operational application.</p>
+            <h2>Ask a question. Find the cause. Take action.</h2>
+            <p>See how a business question can move from a KPI to the underlying cause and then to a practical next step.</p>
             <div class="steps">
               <div class="step"><strong>01</strong><h4>Ask</h4><p>“Which projects are over budget?”</p></div>
-              <div class="step"><strong>02</strong><h4>Explore</h4><p>Drill into the data and underlying metrics.</p></div>
-              <div class="step"><strong>03</strong><h4>Act</h4><p>Turn the insight into the next business action.</p></div>
+              <div class="step"><strong>02</strong><h4>Understand</h4><p>Find the cost, trend or operational driver behind the result.</p></div>
+              <div class="step"><strong>03</strong><h4>Act</h4><p>Use the insight to decide what needs attention next.</p></div>
             </div>
             <div style="margin-top:22px">
               <a class="btn btn-primary" href="#contact">Get a Free Data Assessment</a>
@@ -717,17 +836,17 @@
       </div>
     </section>
 
-    <section>
+    <section id="business-value">
       <div class="container">
         <div class="section-head">
-          <div class="eyebrow">Why this architecture</div>
-          <h2>Modern analytics without making your business team learn the platform.</h2>
-          <p>We transform complex business data into intuitive insights, intelligent recommendations, and practical workflows that help teams make faster, more informed decisions. citeturn0search0turn0search6</p>
+          <div class="eyebrow">What the business gets</div>
+          <h2>Less manual work. Better visibility. Faster decisions.</h2>
+          <p>The goal is not another dashboard. The goal is to give your team more time, clearer numbers and earlier visibility into problems that affect revenue, cost and operations.</p>
         </div>
         <div class="problem-grid">
-          <article class="card"><div class="icon">AI</div><h3>Natural language</h3><p>Business users can ask questions about curated data using ordinary business language and receive SQL-backed results and visualizations.</p></article>
-          <article class="card"><div class="icon">APP</div><h3>Custom applications</h3><p>Build focused interfaces for project tracking, operational analytics, reporting, data entry and AI-enabled workflows.</p></article>
-          <article class="card"><div class="icon">GOV</div><h3>Governed data</h3><p>Design the experience around governed datasets, permissions and business definitions rather than disconnected spreadsheets.</p></article>
+          <article class="card"><div class="icon">01</div><h3>Save reporting time</h3><p>Automate repetitive data preparation and recurring reports so your team can spend less time copying, cleaning and reconciling spreadsheets.</p></article>
+          <article class="card"><div class="icon">02</div><h3>Find money leaks</h3><p>Surface cost overruns, margin erosion, delayed work, invoice issues and other exceptions before they become larger problems.</p></article>
+          <article class="card"><div class="icon">03</div><h3>Make decisions faster</h3><p>Give managers a consistent view of the business and a simple way to ask follow-up questions without waiting for another report.</p></article>
         </div>
       </div>
     </section>
@@ -736,8 +855,8 @@
       <div class="container contact">
         <div>
           <div class="eyebrow">Start the conversation</div>
-          <h2>Let’s find the first business problem worth solving.</h2>
-          <p>Tell us where your data is today, what takes too much manual effort, and what decisions are difficult to make. We’ll use that information to identify a practical starting point.</p>
+          <h2>Find the first business problem worth solving.</h2>
+          <p>Tell us where your data is today, what takes too much manual effort, and where money, time or visibility are being lost. We’ll identify a practical starting point.</p>
           <p><strong>Good starting questions:</strong></p>
           <ul style="color:var(--muted);padding-left:18px">
             <li>How much time does your team spend preparing reports?</li>
@@ -763,7 +882,7 @@
             </select>
           </label>
           <label class="full">Tell us about your challenge<textarea required name="message" placeholder="Example: We currently combine Excel reports from 4 systems every month..."></textarea></label>
-          <div class="form-note">By submitting, your email client will open with the inquiry pre-filled. Change the destination email in the JavaScript configuration before publishing.</div>
+          <div class="form-note">Your inquiry will open in your email application with the details pre-filled.</div>
           <div class="success" id="success">Your inquiry is ready. Your email application should open now.</div>
           <button class="btn btn-primary full" type="submit">Contact Orris Data/AI →</button>
         </form>
@@ -813,6 +932,44 @@ ${data.get("message")}`
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       success.style.display = "block";
     });
+
+    // Mobile navigation
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileNav = document.getElementById("mobileNav");
+
+    if (mobileMenu && mobileNav) {
+      mobileMenu.addEventListener("click", () => {
+        const isOpen = mobileNav.classList.toggle("active");
+        mobileMenu.setAttribute("aria-expanded", String(isOpen));
+        mobileMenu.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+      });
+
+      // Close the menu after selecting a navigation item.
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("active");
+          mobileMenu.setAttribute("aria-expanded", "false");
+          mobileMenu.setAttribute("aria-label", "Open navigation menu");
+        });
+      });
+
+      // Close if the user taps outside the mobile navigation.
+      document.addEventListener("click", (event) => {
+        if (
+          mobileNav.classList.contains("active") &&
+          !mobileNav.contains(event.target) &&
+          !mobileMenu.contains(event.target)
+        ) {
+          mobileNav.classList.remove("active");
+          mobileMenu.setAttribute("aria-expanded", "false");
+          mobileMenu.setAttribute("aria-label", "Open navigation menu");
+        }
+      });
+    }
+
   </script>
 </body>
 </html>
