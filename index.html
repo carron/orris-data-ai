@@ -3,980 +3,2077 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Orris Data/AI helps small and mid-sized businesses turn scattered data into faster decisions, lower operating costs, and better visibility into where money is being made or lost." />
-  <meta name="theme-color" content="#08111f" />
-  <title>Orris Data/AI | Turn Your Data Into Decisions</title>
+  <meta name="description" content="Orris helps growing businesses automate manual reporting, understand what's happening across the business, and get useful answers without hiring a data team." />
+  <meta name="theme-color" content="#06101d" />
+  <title>Orris Data/AI | Your Data Team Without Hiring One</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #06101d;
-      --panel: #0b1728;
-      --panel2: #0e1d31;
-      --text: #f5f7fb;
-      --muted: #a9b7c9;
-      --line: rgba(255,255,255,.10);
-      --cyan: #36d6e7;
-      --blue: #5b8cff;
-      --green: #55e6a5;
-      --shadow: 0 24px 80px rgba(0,0,0,.35);
-      --radius: 22px;
-      --max: 1180px;
+      --bg:#06101d;
+      --bg-soft:#091525;
+      --panel:#0b1728;
+      --panel-2:#0e1d31;
+      --text:#f5f7fb;
+      --muted:#a9b7c9;
+      --line:rgba(255,255,255,.10);
+      --cyan:#36d6e7;
+      --blue:#5b8cff;
+      --green:#55e6a5;
+      --warning:#ffd166;
+      --shadow:0 24px 80px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1180px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
-      color: var(--text);
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at 85% 10%, rgba(54,214,231,.12), transparent 30%),
-        radial-gradient(circle at 10% 25%, rgba(91,140,255,.10), transparent 28%),
+        radial-gradient(circle at 85% 8%,rgba(54,214,231,.12),transparent 30%),
+        radial-gradient(circle at 10% 25%,rgba(91,140,255,.10),transparent 28%),
         var(--bg);
-      line-height: 1.6;
+      line-height:1.6;
     }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .container { width: min(var(--max), calc(100% - 40px)); margin: auto; }
+
+    a { color:inherit; text-decoration:none; }
+    img,video { max-width:100%; display:block; }
+    button,input,select,textarea { font:inherit; }
+    .container { width:min(var(--max),calc(100% - 40px)); margin:auto; }
+
+    /* Navigation */
     .nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  width: 100%;
-
-  background: rgba(6, 16, 29, 0.92);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  border-bottom: 1px solid var(--line);
-}
-    .nav-inner {
-
-  width: min(
-    var(--max),
-    calc(100% - 40px)
-  );
-
-  min-height: 76px;
-
-  margin: 0 auto;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 24px;
-}
-    .logo {
-
-  display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-
-  text-decoration: none;
-}
-
-
-.logo img {
-
-  display: block;
-
-  width: auto;
-
-  height: 52px;
-
-  max-width: 260px;
-
-  object-fit: contain;
-}
-    .logo span { color: var(--cyan); }
-    .nav-links {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 28px;
-
-  margin-left: auto;
-}
-    .nav-links a {
-
-  color: var(--muted);
-
-  font-size: 14px;
-
-  font-weight: 500;
-
-  white-space: nowrap;
-
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-    .nav-links a:hover {
-
-  color: var(--text);
-
-  transform: translateY(-1px);
-}
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding: 13px 19px; border-radius: 12px; border: 1px solid transparent;
-      font-weight: 700; font-size: 14px; cursor:pointer; transition:.2s;
-    }
-    .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--blue)); color:#03101b; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(54,214,231,.18); }
-    .btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.03); }
-    .btn-ghost:hover { background: rgba(255,255,255,.07); }
-    .hero { padding: 92px 0 70px; }
-    .hero-grid { display:grid; grid-template-columns: 1.04fr .96fr; gap: 58px; align-items:center; }
-    .eyebrow { color: var(--cyan); font-size: 13px; font-weight:800; text-transform:uppercase; letter-spacing:.12em; }
-    h1 { font-size: clamp(46px, 6vw, 76px); line-height: .98; letter-spacing:-.065em; margin: 16px 0 24px; }
-    h1 .gradient { background: linear-gradient(90deg, #fff, #74eaf2 45%, #88aaff); -webkit-background-clip:text; color:transparent; }
-    .hero p { color: var(--muted); font-size: 18px; max-width: 650px; }
-    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin:30px 0; }
-    .proof { display:flex; gap:24px; flex-wrap:wrap; color:var(--muted); font-size:13px; }
-    .proof strong { color:var(--text); }
-    .hero-card {
-      position:relative; min-height: 510px; border:1px solid var(--line); border-radius:30px;
-      overflow:hidden; box-shadow:var(--shadow); background:#0a1524;
-    }
-    .hero-card img { width:100%; height:100%; object-fit:contain; object-position:center; opacity:1; background:#08111f; }
-    .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, transparent 20%, rgba(3,9,18,.94) 92%); }
-    .dashboard {
-      position:absolute; left:24px; right:24px; bottom:24px; padding:18px;
-      background:rgba(7,17,30,.86); border:1px solid rgba(255,255,255,.14); border-radius:18px;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      width:100%;
+      background:rgba(6,16,29,.93);
       backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
     }
-    .dash-top { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
-    .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
-    .kpi { background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:14px; padding:13px; }
-    .kpi b { display:block; font-size:22px; }
-    .kpi span { color:var(--muted); font-size:11px; }
-    section { padding: 92px 0; }
-    .section-head { max-width:760px; margin-bottom:38px; }
-    .section-head h2 { font-size:clamp(32px,4vw,50px); line-height:1.05; letter-spacing:-.045em; margin:10px 0 14px; }
-    .section-head p { color:var(--muted); font-size:17px; }
-    .problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .card { padding:26px; border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); }
-    .icon { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background:rgba(54,214,231,.10); color:var(--cyan); font-weight:800; margin-bottom:18px; }
-    .card h3 { margin:0 0 8px; font-size:20px; }
-    .card p { margin:0; color:var(--muted); font-size:14px; }
-    .solution { background:linear-gradient(180deg, rgba(255,255,255,.025), transparent); }
-    .solution-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:28px; align-items:stretch; }
-    .tech-stack { display:grid; gap:12px; }
-    .tech { display:flex; gap:14px; align-items:flex-start; padding:18px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.025); }
-    .tech-num { color:var(--cyan); font-weight:800; font-size:13px; min-width:28px; }
-    .tech b { display:block; margin-bottom:3px; }
-    .tech span { color:var(--muted); font-size:13px; }
-    .visual {
-      border-radius:26px; overflow:hidden; border:1px solid var(--line); min-height:470px; position:relative;
-      background:#0b1728;
-    }
-    .visual img { width:100%; height:100%; object-fit:cover; opacity:.65; }
-    .visual-caption { position:absolute; left:24px; right:24px; bottom:24px; padding:20px; border-radius:18px; background:rgba(5,12,22,.85); backdrop-filter:blur(12px); }
-    .visual-caption b { display:block; font-size:18px; }
-    .visual-caption span { color:var(--muted); font-size:13px; }
-    .cases { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-    .case { overflow:hidden; border:1px solid var(--line); border-radius:22px; background:var(--panel); }
-    .case img { width:100%; height:230px; object-fit:cover; }
-    .case-body { padding:22px; }
-    .tag { display:inline-block; padding:6px 9px; border:1px solid var(--line); border-radius:99px; color:var(--cyan); font-size:11px; font-weight:700; margin-bottom:12px; }
-    .case-body h3 { margin:0 0 8px; }
-    .case-body p { color:var(--muted); font-size:14px; margin:0; }
-    .case-body ul { color:var(--muted); padding-left:18px; font-size:13px; }
-    .demo {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 40px;
-  align-items: center;
-  padding: 30px;
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: linear-gradient(
-    135deg,
-    rgba(54,214,231,.07),
-    rgba(91,140,255,.06)
-  );
-}
 
-.video-wrap {
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: #020711;
-}
-
-.video-wrap video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
-}
-    .video-placeholder { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(135deg,#0c1c2e,#101b35); text-align:center; padding:30px; }
-    .play { width:72px; height:72px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg,var(--cyan),var(--blue)); color:#04101b; font-size:28px; margin:auto; }
-    .demo h2 { font-size:38px; line-height:1.05; letter-spacing:-.04em; margin:8px 0 14px; }
-    .demo p { color:var(--muted); }
-    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:26px; }
-    .step { padding:20px; border:1px solid var(--line); border-radius:16px; }
-    .step strong { color:var(--cyan); font-size:12px; }
-    .step h4 { margin:8px 0 4px; }
-    .step p { margin:0; color:var(--muted); font-size:13px; }
-    .contact { display:grid; grid-template-columns:.8fr 1.2fr; gap:40px; }
-    .contact h2 { font-size:46px; line-height:1.02; letter-spacing:-.045em; margin:10px 0 16px; }
-    .contact p { color:var(--muted); }
-    form { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:26px; border:1px solid var(--line); border-radius:24px; background:rgba(255,255,255,.035); }
-    label { display:grid; gap:7px; font-size:12px; font-weight:700; color:#dce4ef; }
-    .full { grid-column:1/-1; }
-    input, select, textarea {
-      width:100%; padding:13px 14px; border-radius:11px; border:1px solid rgba(255,255,255,.13);
-      background:#081322; color:var(--text); outline:none; font:inherit;
+    .nav-inner {
+      width:min(var(--max),calc(100% - 40px));
+      min-height:76px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
     }
-    textarea { min-height:130px; resize:vertical; }
-    input:focus, select:focus, textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 3px rgba(54,214,231,.10); }
-    .form-note { grid-column:1/-1; color:#8798ad; font-size:11px; margin-top:-3px; }
-    .success { display:none; grid-column:1/-1; padding:12px; border-radius:10px; background:rgba(85,230,165,.09); color:var(--green); font-size:13px; }
-    footer { border-top:1px solid var(--line); padding:28px 0; color:#7f90a6; font-size:12px; }
-    .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+
+    .logo {
+      display:flex;
+      align-items:center;
+      flex-shrink:0;
+    }
+
+    .logo img {
+      display:block;
+      width:auto;
+      height:52px;
+      max-width:260px;
+      object-fit:contain;
+    }
+
+    .nav-links {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:25px;
+      margin-left:auto;
+    }
+
+    .nav-links a {
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+      white-space:nowrap;
+      transition:.2s;
+    }
+
+    .nav-links a:hover { color:var(--text); }
+
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 19px;
+      border-radius:12px;
+      border:1px solid transparent;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .btn-primary {
+      background:linear-gradient(135deg,var(--cyan),var(--blue));
+      color:#03101b;
+    }
+
+    .btn-primary:hover {
+      transform:translateY(-2px);
+      box-shadow:0 12px 30px rgba(54,214,231,.18);
+    }
+
+    .btn-ghost {
+      border-color:var(--line);
+      color:var(--text);
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn-ghost:hover { background:rgba(255,255,255,.07); }
+
+    .nav-cta { flex-shrink:0; white-space:nowrap; }
+
     .mobile-menu {
+      display:none;
+      width:44px;
+      height:44px;
+      padding:0;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      cursor:pointer;
+      flex-shrink:0;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:5px;
+    }
 
-  display: none;
-
-  width: 44px;
-
-  height: 44px;
-
-  padding: 0;
-
-  border: 1px solid var(--line);
-
-  border-radius: 10px;
-
-  background: rgba(255,255,255,.04);
-
-  cursor: pointer;
-
-  flex-shrink: 0;
-
-  align-items: center;
-
-  justify-content: center;
-
-  flex-direction: column;
-
-  gap: 5px;
-}
     .mobile-menu span {
+      display:block;
+      width:20px;
+      height:2px;
+      background:var(--text);
+      border-radius:2px;
+    }
 
-  display: block;
-
-  width: 20px;
-
-  height: 2px;
-
-  background: var(--text);
-
-  border-radius: 2px;
-
-  transition: 0.25s ease;
-}
     .mobile-nav {
+      display:none;
+      width:100%;
+      padding:16px 20px 22px;
+      background:rgba(6,16,29,.98);
+      border-top:1px solid var(--line);
+    }
 
-  display: none;
+    .mobile-nav.active { display:block; }
 
-  width: 100%;
+    .mobile-nav a {
+      display:block;
+      padding:13px 4px;
+      color:var(--text);
+      font-size:15px;
+      font-weight:600;
+      border-bottom:1px solid var(--line);
+    }
 
-  padding: 18px 20px 24px;
-
-  background: rgba(6, 16, 29, 0.98);
-
-  border-top: 1px solid var(--line);
-}
-
-
-.mobile-nav a {
-
-  display: block;
-
-  padding: 14px 4px;
-
-  color: var(--text);
-
-  font-size: 15px;
-
-  font-weight: 500;
-
-  border-bottom: 1px solid var(--line);
-}
     .mobile-nav .mobile-cta {
-
-  margin-top: 18px;
-
-  text-align: center;
-
-  border: none;
-
-  padding: 14px 18px;
-}
-    
-.mobile-nav.active {
-
-  display: block;
-}
-
-    @media(max-width:900px) {
-      .hero-grid,.solution-grid,.demo,.contact { grid-template-columns:1fr; }
-      .problem-grid,.cases { grid-template-columns:1fr; }
-      .hero-card { min-height:430px; }
-      .nav-links { display:none; }
-
-      .mobile-menu span {
-
-  display: block;
-
-  width: 20px;
-
-  height: 2px;
-
-  background: var(--text);
-
-  border-radius: 2px;
-
-  transition: 0.25s ease;
-}
-      .mobile-nav {
-
-  display: none;
-
-  width: 100%;
-
-  padding: 18px 20px 24px;
-
-  background: rgba(6, 16, 29, 0.98);
-
-  border-top: 1px solid var(--line);
-}
-
-
-.mobile-nav a {
-
-  display: block;
-
-  padding: 14px 4px;
-
-  color: var(--text);
-
-  font-size: 15px;
-
-  font-weight: 500;
-
-  border-bottom: 1px solid var(--line);
-}
-      .mobile-nav .mobile-cta {
-
-  margin-top: 18px;
-
-  text-align: center;
-
-  border: none;
-
-  padding: 14px 18px;
-}
-
-    }
-    @media(max-width:620px) {
-      .container { width:min(var(--max),calc(100% - 26px)); }
-      section { padding:68px 0; }
-      .hero { padding-top:65px; }
-      .kpis,.steps,form { grid-template-columns:1fr; }
-      .full { grid-column:auto; }
-      .form-note,.success { grid-column:auto; }
-      h1 { font-size:48px; }
+      margin-top:16px;
+      text-align:center;
+      border:0;
+      padding:14px 18px;
     }
 
-    /* Responsive navigation and layout */
-    .nav-cta { flex-shrink: 0; white-space: nowrap; }
-    .mobile-menu { display:none; }
-
-    @media (max-width: 1080px) {
-      .nav-inner { gap: 14px; }
-      .nav-links { gap: 16px; }
-      .nav-links a { font-size: 13px; }
-      .nav-cta { padding: 11px 14px; font-size: 13px; }
-      .logo img { height: 46px; max-width: 190px; }
+    /* Shared */
+    section { padding:92px 0; }
+    .eyebrow {
+      color:var(--cyan);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.13em;
     }
 
-    @media (max-width: 900px) {
-      .nav-inner {
-        min-height: 70px;
-        width: min(var(--max), calc(100% - 32px));
-      }
-      .nav-links,
-      .nav-cta { display:none; }
-      .mobile-menu {
-        display:flex;
-        margin-left:auto;
-      }
-      .hero-grid,
-      .solution-grid,
-      .demo,
-      .contact { grid-template-columns:1fr; }
-      .problem-grid,
-      .cases { grid-template-columns:repeat(2,1fr); }
-      .hero-card { min-height:430px; }
-      .demo { padding:24px; }
-      .contact { gap:28px; }
+    .section-head {
+      max-width:780px;
+      margin-bottom:38px;
+    }
+
+    .section-head h2 {
+      font-size:clamp(32px,4vw,50px);
+      line-height:1.05;
+      letter-spacing:-.045em;
+      margin:10px 0 14px;
+    }
+
+    .section-head p {
+      color:var(--muted);
+      font-size:17px;
+      margin:0;
     }
 
 
-    .hero-card {
-      min-height:0;
-      height:auto;
-      aspect-ratio: 4 / 5;
-      border-radius:22px;
+    /* Business model video at the top */
+    .intro-video {
+      padding:28px 0 10px;
+    }
+
+    .intro-video-wrap {
+      position:relative;
+      width:min(var(--max),calc(100% - 40px));
+      margin:auto;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:28px;
       overflow:hidden;
-      background:#f7fafc;
+      background:#030b16;
+      box-shadow:0 28px 90px rgba(0,0,0,.38);
     }
-    .hero-benefits-video {
+
+    .intro-video video {
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      background:#030b16;
+    }
+@media (max-width: 700px) {
+      .intro-video {
+        padding:16px 0 4px;
+      }
+
+      .intro-video-wrap {
+        width:calc(100% - 24px);
+        border-radius:18px;
+      }
+}
+
+    /* Hero */
+    .hero { padding:86px 0 72px; }
+
+    .hero-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:58px;
+      align-items:center;
+    }
+
+    .hero h1 {
+      font-size:clamp(46px,6vw,76px);
+      line-height:.98;
+      letter-spacing:-.065em;
+      margin:16px 0 24px;
+      max-width:760px;
+    }
+
+    .hero h1 .gradient {
+      background:linear-gradient(90deg,#fff,#74eaf2 45%,#88aaff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p {
+      color:var(--muted);
+      font-size:18px;
+      max-width:680px;
+      margin:0;
+    }
+
+    .hero-actions {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:30px 0 22px;
+    }
+
+    .proof {
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .proof strong { color:var(--green); }
+
+    .hero-message b {
+      display:block;
+      font-size:15px;
+      margin-bottom:3px;
+    }
+
+    .hero-message span {
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* Pain */
+    .pain-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card {
+      padding:26px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+    }
+
+    .icon {
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:rgba(54,214,231,.10);
+      color:var(--cyan);
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .card h3 {
+      margin:0 0 8px;
+      font-size:19px;
+      line-height:1.25;
+    }
+
+    .card p {
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Positioning strip */
+    .positioning {
+      padding:30px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.018);
+    }
+
+    .positioning-inner {
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:20px;
+      align-items:center;
+    }
+
+    .positioning-item {
+      padding:8px 20px;
+      border-right:1px solid var(--line);
+    }
+
+    .positioning-item:last-child { border-right:0; }
+
+    .positioning-item strong {
+      display:block;
+      font-size:15px;
+      margin-bottom:3px;
+    }
+
+    .positioning-item span {
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* Before / After */
+    .transformation {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.018), transparent),
+        var(--bg);
+    }
+
+    .transformation-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .transform-card {
+      position:relative;
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+      overflow:hidden;
+    }
+
+    .transform-card.before {
+      border-color:rgba(255,255,255,.10);
+    }
+
+    .transform-card.after {
+      border-color:rgba(54,214,231,.22);
+      background:
+        radial-gradient(circle at 90% 10%,rgba(54,214,231,.10),transparent 35%),
+        linear-gradient(180deg,rgba(54,214,231,.055),rgba(255,255,255,.018));
+    }
+
+    .transform-label {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:6px 10px;
+      border-radius:99px;
+      font-size:10px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:20px;
+    }
+
+    .before .transform-label {
+      color:#c4cfdd;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+    }
+
+    .after .transform-label {
+      color:var(--green);
+      background:rgba(85,230,165,.08);
+      border:1px solid rgba(85,230,165,.18);
+    }
+
+    .transform-card h3 {
+      font-size:24px;
+      line-height:1.18;
+      letter-spacing:-.025em;
+      margin:0 0 10px;
+    }
+
+    .transform-card p {
+      color:var(--muted);
+      font-size:13px;
+      margin:0;
+    }
+
+    .transform-arrow {
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--cyan),var(--blue));
+      color:#03101b;
+      font-weight:900;
+      z-index:3;
+      box-shadow:0 8px 30px rgba(54,214,231,.16);
+    }
+
+    .transformation-result {
+      margin-top:18px;
+      padding:18px 20px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.025);
+      text-align:center;
+    }
+
+    .transformation-result strong {
+      display:block;
+      font-size:15px;
+      margin-bottom:3px;
+    }
+
+    .transformation-result span {
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* Solution */
+    .solution {
+      background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);
+    }
+
+    .solution-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:30px;
+      align-items:stretch;
+    }
+
+    .steps-list { display:grid; gap:12px; }
+
+    .solution-step {
+      display:flex;
+      gap:15px;
+      align-items:flex-start;
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:17px;
+      background:rgba(255,255,255,.025);
+    }
+
+    .step-num {
+      color:var(--cyan);
+      font-weight:800;
+      font-size:13px;
+      min-width:30px;
+      padding-top:1px;
+    }
+
+    .solution-step b {
+      display:block;
+      margin-bottom:3px;
+    }
+
+    .solution-step span {
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Offer */
+    .offer {
+      position:relative;
+      overflow:hidden;
+      padding:44px;
+      border:1px solid rgba(54,214,231,.18);
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 85% 15%,rgba(54,214,231,.10),transparent 30%),
+        linear-gradient(135deg,rgba(54,214,231,.07),rgba(91,140,255,.06));
+    }
+
+    .offer-grid {
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:44px;
+      align-items:center;
+    }
+
+    .offer h2 {
+      font-size:clamp(34px,4vw,48px);
+      line-height:1.04;
+      letter-spacing:-.045em;
+      margin:9px 0 14px;
+    }
+
+    .offer p {
+      color:var(--muted);
+      margin:0;
+      max-width:650px;
+    }
+
+    .offer-list {
+      display:grid;
+      gap:10px;
+      margin:24px 0 0;
+      padding:0;
+      list-style:none;
+    }
+
+    .offer-list li {
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#dce4ef;
+      font-size:13px;
+    }
+
+    .offer-list strong { color:var(--green); }
+
+    .offer-card {
+      padding:25px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      background:rgba(5,12,22,.62);
+    }
+
+    .offer-card b {
+      display:block;
+      font-size:18px;
+      margin-bottom:12px;
+    }
+
+    .offer-card-row {
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+      font-size:12px;
+    }
+
+    .offer-card-row:last-child { border-bottom:0; }
+    .offer-card-row span { color:var(--muted); }
+
+    /* Use cases */
+    .cases {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .case {
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:var(--panel);
+    }
+
+    .case-top {
+      height:170px;
+      padding:22px;
+      position:relative;
+      background:
+        radial-gradient(circle at 75% 20%,rgba(54,214,231,.20),transparent 35%),
+        linear-gradient(135deg,#10233b,#0a1524);
+    }
+
+    .case-top .tag {
+      display:inline-block;
+      padding:6px 9px;
+      border:1px solid rgba(54,214,231,.22);
+      border-radius:99px;
+      color:var(--cyan);
+      font-size:10px;
+      font-weight:800;
+    }
+
+    .case-top .case-number {
+      position:absolute;
+      right:20px;
+      bottom:15px;
+      color:rgba(255,255,255,.10);
+      font-size:72px;
+      line-height:1;
+      font-weight:800;
+    }
+
+    .case-body { padding:22px; }
+
+    .case-body h3 {
+      margin:0 0 8px;
+      line-height:1.25;
+      font-size:19px;
+    }
+
+    .case-body p {
+      color:var(--muted);
+      font-size:13px;
+      margin:0 0 15px;
+    }
+
+    .case-body ul {
+      color:#c4cfdd;
+      padding-left:18px;
+      margin:0;
+      font-size:12px;
+    }
+
+    /* Demo */
+    .demo {
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:40px;
+      align-items:center;
+      padding:30px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:linear-gradient(135deg,rgba(54,214,231,.07),rgba(91,140,255,.06));
+    }
+
+    .video-wrap {
+      width:100%;
+      max-width:760px;
+      margin:0 auto;
+      aspect-ratio:16/9;
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#020711;
+    }
+
+    .video-wrap video {
       display:block;
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;
       object-position:center;
-      background:#f7fafc;
+      background:#020711;
     }
 
-    @media (max-width: 680px) {
-      .container { width:min(var(--max), calc(100% - 28px)); }
+    .video-placeholder {
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#0c1c2e,#101b35);
+      text-align:center;
+      padding:30px;
+    }
+
+    .play {
+      width:66px;
+      height:66px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--cyan),var(--blue));
+      color:#04101b;
+      font-size:25px;
+      margin:auto;
+    }
+
+    .demo h2 {
+      font-size:38px;
+      line-height:1.05;
+      letter-spacing:-.04em;
+      margin:8px 0 14px;
+    }
+
+    .demo p { color:var(--muted); }
+
+    .demo-steps {
+      display:grid;
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .demo-step {
+      display:grid;
+      grid-template-columns:32px 1fr;
+      gap:10px;
+      align-items:start;
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .demo-step strong { color:var(--cyan); font-size:12px; }
+    .demo-step b { display:block; font-size:13px; }
+    .demo-step span { color:var(--muted); font-size:12px; }
+
+    /* Value */
+    .value-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .value-card {
+      padding:27px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(255,255,255,.025);
+    }
+
+    .value-card .big {
+      font-size:28px;
+      font-weight:800;
+      letter-spacing:-.03em;
+      margin-bottom:5px;
+    }
+
+    .value-card p {
+      color:var(--muted);
+      font-size:13px;
+      margin:0;
+    }
+
+    /* Contact */
+    .contact {
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:40px;
+      align-items:start;
+    }
+
+    .contact h2 {
+      font-size:46px;
+      line-height:1.02;
+      letter-spacing:-.045em;
+      margin:10px 0 16px;
+    }
+
+    .contact > div > p { color:var(--muted); }
+
+    .contact-checks {
+      margin:22px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:9px;
+    }
+
+    .contact-checks li {
+      color:#cbd5e1;
+      font-size:13px;
+    }
+
+    .contact-checks strong { color:var(--green); }
+
+    form {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      padding:26px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.035);
+    }
+
+    label {
+      display:grid;
+      gap:7px;
+      font-size:12px;
+      font-weight:700;
+      color:#dce4ef;
+    }
+
+    .full { grid-column:1/-1; }
+
+    input,select,textarea {
+      width:100%;
+      padding:13px 14px;
+      border-radius:11px;
+      border:1px solid rgba(255,255,255,.13);
+      background:#081322;
+      color:var(--text);
+      outline:none;
+    }
+
+    input:focus,select:focus,textarea:focus {
+      border-color:var(--cyan);
+      box-shadow:0 0 0 3px rgba(54,214,231,.10);
+    }
+
+    textarea {
+      min-height:125px;
+      resize:vertical;
+    }
+
+    .form-note {
+      grid-column:1/-1;
+      color:#8798ad;
+      font-size:11px;
+      margin-top:-2px;
+    }
+
+    .success {
+      display:none;
+      grid-column:1/-1;
+      padding:12px;
+      border-radius:10px;
+      background:rgba(85,230,165,.09);
+      color:var(--green);
+      font-size:13px;
+    }
+
+    /* Footer */
+    footer {
+      border-top:1px solid var(--line);
+      padding:28px 0;
+      color:#7f90a6;
+      font-size:12px;
+    }
+
+    .footer-inner {
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    /* Responsive */
+    @media(max-width:1050px) {
+      .nav-links { gap:16px; }
+      .nav-links a { font-size:12px; }
+      .nav-cta { padding:11px 14px; font-size:12px; }
+    }
+
+    @media(max-width:900px) {
+      .nav-inner {
+        min-height:70px;
+        width:min(var(--max),calc(100% - 32px));
+      }
+
+      .nav-links,.nav-cta { display:none; }
+      .mobile-menu { display:flex; margin-left:auto; }
+
+      .hero-grid,
+      .solution-grid,
+      .offer-grid,
+      .demo,
+      .contact {
+        grid-template-columns:1fr;
+      }
+
+      .pain-grid,
+      .cases,
+      .value-grid {
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .positioning-item:last-child { border-bottom:0; }
+
+      .offer { padding:32px; }
+    }
+
+    @media(max-width:680px) {
+      .container { width:min(var(--max),calc(100% - 28px)); }
       .nav-inner { width:calc(100% - 28px); min-height:64px; }
       .logo img { height:42px; max-width:170px; }
-      .mobile-menu { width:42px; height:42px; }
-      .mobile-nav { padding:14px 14px 20px; }
-      .hero { padding:56px 0 52px; }
+
       section { padding:64px 0; }
-      h1 {
-        font-size:clamp(40px, 12vw, 54px);
-        letter-spacing:-.055em;
-      }
-      .hero p { font-size:16px; }
-      .hero-actions { flex-direction:column; align-items:stretch; }
-      .hero-actions .btn { width:100%; }
-      .proof { display:grid; gap:9px; }
-      .hero-card {
-        min-height:0;
-        height:auto;
-        aspect-ratio: 4 / 5;
-        border-radius:22px;
-      }
-      .hero-card img {
-        display:none;
-      }
-      .hero-card .mobile-benefits-video {
-        display:block;
-      }
-      .mobile-benefits-video {
-        display:none;
-      }
-      .hero-card .hero-overlay,
-      .hero-card .dashboard {
-        display:none;
+      .hero { padding:56px 0 52px; }
+
+      .hero h1 {
+        font-size:clamp(40px,12vw,54px);
       }
 
-      /* Mobile: replace the executive screenshot with a short silent benefits video */
-      .mobile-benefits-video {
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        object-position:center;
-        display:block;
-        background:#08111f;
+      .hero p { font-size:16px; }
+
+      .hero-actions {
+        flex-direction:column;
+        align-items:stretch;
       }
-      .hero-card > img {
-        display:none;
+
+      .hero-actions .btn { width:100%; }
+
+      .proof {
+        display:grid;
+        gap:8px;
       }
-      .kpis { grid-template-columns:1fr; gap:7px; }
-      .kpi { padding:10px; }
-      .kpi b { font-size:18px; }
-      .kpi span { font-size:10px; }
-      .problem-grid,
-      .cases { grid-template-columns:1fr; }
+
+      .pain-grid,
+      .cases,
+      .value-grid {
+        grid-template-columns:1fr;
+      }
+
       .card { padding:22px; }
-      .visual { min-height:360px; }
-      .visual-caption { left:14px; right:14px; bottom:14px; padding:16px; }
-      .case img { height:190px; }
+
+      .transformation-grid {
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .transform-arrow {
+        position:relative;
+        left:auto;
+        top:auto;
+        transform:none;
+        margin:-3px auto;
+      }
+
+      .transform-card {
+        padding:23px;
+      }
+
       .demo { padding:14px; gap:24px; border-radius:22px; }
       .video-wrap { border-radius:14px; }
+
       .demo h2,
-      .contact h2 { font-size:34px; }
-      .steps { grid-template-columns:1fr; }
-      form { grid-template-columns:1fr; padding:20px; }
+      .contact h2 {
+        font-size:34px;
+      }
+
+      form {
+        grid-template-columns:1fr;
+        padding:20px;
+      }
+
       .full,
       .form-note,
-      .success { grid-column:auto; }
-      input, select, textarea { font-size:16px; } /* prevents iOS zoom */
+      .success {
+        grid-column:auto;
+      }
+
+      input,select,textarea {
+        font-size:16px;
+      }
+
       footer { padding:22px 0; }
-      .footer-inner { flex-direction:column; gap:8px; }
+      .footer-inner {
+        flex-direction:column;
+        gap:8px;
+      }
     }
 
-    @media (max-width: 380px) {
+    @media(max-width:380px) {
       .container { width:calc(100% - 22px); }
       .nav-inner { width:calc(100% - 22px); }
       .logo img { height:38px; max-width:150px; }
       .hero { padding-top:46px; }
-      .hero-card { aspect-ratio: 4 / 5; }
-      h1 { font-size:38px; }
+    }
+
+    /* Cross-browser responsive hardening */
+    html { overflow-x:hidden; -webkit-text-size-adjust:100%; }
+    body { overflow-x:hidden; }
+    img, video, svg, canvas { max-width:100%; }
+    video { -webkit-appearance:none; }
+    .btn { -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+    .nav, .mobile-nav { -webkit-backdrop-filter:blur(16px); }
+
+    @media (min-width:1200px) {
+      .hero { padding-top:92px; }
+      .intro-video { padding-top:30px; }
+    }
+
+    @media (max-width:1024px) {
+      :root { --max: 940px; }
+      section { padding:76px 0; }
+
+      .nav-inner {
+        width:min(var(--max),calc(100% - 32px));
+      }
+
+      .nav-links { gap:14px; }
+      .nav-links a { font-size:11px; }
+
+      .hero h1 {
+        font-size:clamp(42px,6.2vw,64px);
+      }
+
+      .pain-grid,
+      .cases,
+      .value-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .positioning-inner {
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:10px;
+      }
+
+      .positioning-item { padding:8px 14px; }
+
+      .offer-grid {
+        grid-template-columns:1fr 1fr;
+        gap:26px;
+      }
+
+      .demo {
+        grid-template-columns:1fr;
+      }
+
+      .demo .video-wrap {
+        max-width:none;
+      }
+
+      .contact {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:900px) {
+      .nav-links,
+      .nav-cta { display:none; }
+
+      .mobile-menu {
+        display:flex;
+      }
+
+      .hero-grid,
+      .solution-grid,
+      .offer-grid,
+      .contact {
+        grid-template-columns:1fr;
+      }
+
+      .pain-grid,
+      .cases,
+      .value-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .positioning-inner {
+        grid-template-columns:1fr;
+        gap:0;
+      }
+
+      .positioning-item {
+        border-right:0;
+        border-bottom:1px solid var(--line);
+        padding:16px 0;
+      }
+
+      .positioning-item:last-child {
+        border-bottom:0;
+      }
+
+      .offer { padding:32px; }
+    }
+
+    @media (max-width:768px) {
+      .container {
+        width:calc(100% - 32px);
+      }
+
+      .nav-inner {
+        width:calc(100% - 32px);
+      }
+
+      section { padding:64px 0; }
+
+      .intro-video {
+        padding:16px 0 6px;
+      }
+
+      .intro-video-wrap {
+        width:calc(100% - 24px);
+        border-radius:18px;
+      }
+
+      .intro-video video {
+        width:100%;
+        aspect-ratio:16 / 9;
+        height:auto;
+        object-fit:contain;
+      }
+
+      .hero {
+        padding:54px 0 48px;
+      }
+
+      .hero h1 {
+        font-size:clamp(38px,10.5vw,54px);
+      }
+
+      .hero p {
+        font-size:16px;
+      }
+
+      .hero-actions {
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .hero-actions .btn {
+        width:100%;
+      }
+
+      .transformation-grid {
+        grid-template-columns:1fr;
+      }
+
+      .transform-arrow {
+        position:relative;
+        left:auto;
+        top:auto;
+        transform:none;
+        margin:-3px auto;
+      }
+
+      .demo {
+        padding:14px;
+        gap:24px;
+        border-radius:22px;
+      }
+
+      .demo h2,
+      .contact h2 {
+        font-size:clamp(32px,8vw,40px);
+      }
+
+      form {
+        grid-template-columns:1fr;
+      }
+
+      .full,
+      .form-note,
+      .success {
+        grid-column:auto;
+      }
+
+      input, select, textarea {
+        font-size:16px;
+      }
+    }
+
+    @media (max-width:560px) {
+      .pain-grid,
+      .cases,
+      .value-grid {
+        grid-template-columns:1fr;
+      }
+
+      .section-head h2 {
+        font-size:clamp(30px,9vw,42px);
+      }
+
+      .section-head p {
+        font-size:15px;
+      }
+
+      .card,
+      .value-card,
+      .transform-card {
+        padding:21px;
+      }
+
+      .offer {
+        padding:24px 20px;
+        border-radius:22px;
+      }
+
+      .offer h2 {
+        font-size:clamp(32px,9vw,42px);
+      }
+
+      .offer-card {
+        padding:20px;
+      }
+
+      .offer-card-row {
+        flex-direction:column;
+        gap:4px;
+      }
+
+      .case-top {
+        height:145px;
+      }
+
+      .video-wrap {
+        border-radius:14px;
+      }
+
+      .demo {
+        padding:10px;
+      }
+
+      .demo .video-wrap {
+        aspect-ratio:16 / 9;
+      }
+
+      .footer-inner {
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width:380px) {
+      .container,
+      .nav-inner {
+        width:calc(100% - 22px);
+      }
+
+      .logo img {
+        height:38px;
+        max-width:150px;
+      }
+
+      .mobile-menu {
+        width:42px;
+        height:42px;
+      }
+
+      .hero {
+        padding-top:46px;
+      }
+
+      .btn {
+        padding:12px 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after {
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+      }
     }
 
 
-    .mobile-nav {
-      position: relative;
-      z-index: 1001;
+    /* Demo video placeholder: keep the message fully visible at every width */
+    .video-placeholder {
+      box-sizing:border-box;
+      overflow:hidden;
     }
 
-    .mobile-menu {
-      position: relative;
-      z-index: 1002;
+    .video-placeholder > div {
+      width:100%;
+      max-width:620px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+
+    .video-placeholder h3 {
+      margin:18px 0 10px;
+      font-size:clamp(22px,2.2vw,30px);
+      line-height:1.12;
+      overflow-wrap:anywhere;
+    }
+
+    .video-placeholder p {
+      margin:0 auto;
+      max-width:560px;
+      font-size:clamp(13px,1.25vw,16px);
+      line-height:1.5;
+      color:#b8c7d8;
+      overflow-wrap:anywhere;
+      word-break:normal;
+    }
+
+    @media (max-width:768px) {
+      .video-placeholder {
+        padding:22px 18px;
+      }
+
+      .video-placeholder h3 {
+        margin:13px 0 8px;
+        font-size:21px;
+      }
+
+      .video-placeholder p {
+        font-size:13px;
+        line-height:1.4;
+      }
+
+      .video-placeholder .play {
+        width:54px;
+        height:54px;
+        font-size:20px;
+      }
+    }
+
+    @media (max-width:480px) {
+      .video-placeholder {
+        padding:18px 14px;
+      }
+
+      .video-placeholder h3 {
+        font-size:18px;
+      }
+
+      .video-placeholder p {
+        font-size:12px;
+        line-height:1.35;
+      }
+
+      .video-placeholder .play {
+        width:48px;
+        height:48px;
+        font-size:18px;
+      }
+    }
+
+
+    .footer-contact {
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-contact a {
+      color:var(--cyan);
+      text-decoration:none;
+      transition:opacity .2s ease;
+    }
+
+    .footer-contact a:hover {
+      opacity:.8;
+      text-decoration:underline;
+    }
+
+    @media (max-width:768px) {
+      .footer-contact {
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+      }
     }
 
   </style>
 </head>
-<body>
+
+<body id="top">
+
   <nav class="nav">
-  <div class="container nav-inner">
+    <div class="container nav-inner">
+      <a class="logo" href="#top" aria-label="Orris Data AI home">
+        <img src="images/logovertical.png" alt="Orris Data AI">
+      </a>
 
-    <!-- Logo -->
-    <a class="logo" href="#top">
-      <img
-        src="images/logovertical.png"
-        alt="Orris Data AI"
-      >
-    </a>
+      <div class="nav-links">
+        <a href="#problem">The Problem</a>
+        <a href="#how">How It Works</a>
+        <a href="#assessment">Free Assessment</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#demo">Demo</a>
+      </div>
 
-    <!-- Desktop navigation -->
-    <div class="nav-links" id="navLinks">
+      <a class="btn btn-primary nav-cta" href="#assessment">Get Free Assessment</a>
 
-      <a href="#problems">Problems</a>
-
-      <a href="#solution">Solution</a>
-
-      <a href="#use-cases">Use Cases</a>
-
-      <a href="#demo">Demo</a>
-
-      <a href="#business-value">Value</a>
-
-      <a href="#contact">Contact</a>
-
+      <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
-    <a class="btn btn-primary nav-cta" href="#contact">Free Data Assessment</a>
-
-    <!-- Mobile menu button -->
-    <button
-      class="mobile-menu"
-      id="mobileMenu"
-      aria-label="Open navigation menu"
-      aria-expanded="false"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-  </div>
-
-  <!-- Mobile navigation -->
-  <div class="mobile-nav" id="mobileNav">
-
-    <a href="#problems">Problems</a>
-
-    <a href="#solution">Solution</a>
-
-    <a href="#use-cases">Use Cases</a>
-
-    <a href="#demo">Demo</a>
-
-    <a href="#contact">Contact</a>
-
-    <a
-      class="btn btn-primary mobile-cta"
-      href="#contact"
-    >
-      Book a Discovery Call
-    </a>
-
-  </div>
-</nav>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#problem">The Problem</a>
+      <a href="#how">How It Works</a>
+      <a href="#assessment">Free Assessment</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#demo">Demo</a>
+      <a class="btn btn-primary mobile-cta" href="#assessment">Get Free Assessment</a>
+    </div>
+  </nav>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Business Intelligence • AI • Automation</div>
-          <h1>Find the problems in your business <span class="gradient">before they become expensive.</span></h1>
-          <p>
-            Orris turns scattered business data into automated reporting, clear KPIs and practical answers —
-            so small and mid-sized teams spend less time preparing reports and more time making decisions.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Get a Free Data Assessment →</a>
-            <a class="btn btn-ghost" href="#demo">See the Demo</a>
-          </div>
-          <div class="proof">
-            <span><strong>✓</strong> Less manual reporting</span>
-            <span><strong>✓</strong> Faster answers from your data</span>
-            <span><strong>✓</strong> Earlier visibility into costly problems</span>
-          </div>
-        </div>
 
-        <div class="hero-card">
-        <video class="mobile-benefits-video hero-benefits-video"
-          autoplay
-          controls
-          muted
-          loop
-          playsinline
-          preload="auto"
-          aria-label="Short overview of the business benefits of Orris Data/AI">
-          <source src="orris_mobile_benefits_12s.mp4?v=3" type="video/mp4"    >
+
+    <!-- BUSINESS MODEL VIDEO -->
+    <section class="intro-video" aria-label="Orris business model">
+      <div class="intro-video-wrap">
+        <video
+          poster="images/logovertical.png"
+          aria-label="Orris Data AI business model" controls playsinline webkit-playsinline preload="metadata">
+          <source src="orris_business_model_video_sharp_web.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
         </video>
-      </div>
       </div>
     </section>
 
-    <section id="problems">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <div class="eyebrow">For growing businesses without a data team</div>
+
+          <h1>
+            Your business already has the data.
+            <span class="gradient">You just don't have the time to make sense of it.</span>
+          </h1>
+
+          <p>
+            Orris helps small and mid-sized businesses automate manual reporting,
+            see what is happening across the business, and get useful answers —
+            without hiring a data team.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#assessment">Find Your First Opportunity →</a>
+            <a class="btn btn-ghost" href="#demo">See How It Works</a>
+          </div>
+
+          <div class="proof">
+            <span><strong>✓</strong> Built for construction & project-based businesses</span>
+            <span><strong>✓</strong> Stop rebuilding the same reports</span>
+            <span><strong>✓</strong> See project problems earlier</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSITIONING -->
+    <div class="positioning">
+      <div class="container positioning-inner">
+        <div class="positioning-item">
+          <strong>Construction & project businesses</strong>
+          <span>Get a clearer view of project cost, margin, labor and performance.</span>
+        </div>
+        <div class="positioning-item">
+          <strong>Still relying on spreadsheets?</strong>
+          <span>Automate the reporting process that consumes the most time.</span>
+        </div>
+        <div class="positioning-item">
+          <strong>Not ready for a data team?</strong>
+          <span>Start small with one business problem and expand when it makes sense.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSFORMATION -->
+    <section class="transformation">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">What changes with Orris</div>
+          <h2>Turn recurring reporting work into time for managing the business.</h2>
+          <p>
+            Orris is not about giving you more reports. It is about changing what your team
+            spends its time doing — from preparing information to acting on it.
+          </p>
+        </div>
+
+        <div class="transformation-grid">
+
+          <article class="transform-card before">
+            <div class="transform-label">Before Orris</div>
+            <h3>Hours every week preparing reports.</h3>
+            <p>
+              Data is exported, cleaned, combined and checked before anyone can review
+              what actually happened.
+            </p>
+          </article>
+
+          <div class="transform-arrow" aria-hidden="true">→</div>
+
+          <article class="transform-card after">
+            <div class="transform-label">With Orris</div>
+            <h3>Minutes reviewing exceptions and deciding what needs attention.</h3>
+            <p>
+              Recurring reporting is automated so your team can spend its time understanding
+              the numbers instead of assembling them.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="transformation-grid">
+
+          <article class="transform-card before">
+            <div class="transform-label">Before Orris</div>
+            <h3>Project overruns are discovered during the monthly review.</h3>
+            <p>
+              By the time the numbers are consolidated, there may be little time left
+              to understand what caused the deviation.
+            </p>
+          </article>
+
+          <div class="transform-arrow" aria-hidden="true">→</div>
+
+          <article class="transform-card after">
+            <div class="transform-label">With Orris</div>
+            <h3>Projects with unusual cost or performance trends are visible earlier.</h3>
+            <p>
+              Managers can focus on the projects that need attention before the next
+              formal review.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="transformation-result">
+          <strong>The shift: from preparing the numbers to managing the business.</strong>
+          <span>Automate the recurring work. Focus human attention where the data says it matters.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem">
       <div class="container">
         <div class="section-head">
           <div class="eyebrow">The problem</div>
-          <h2>Your business has data. But getting a clear answer takes too much work.</h2>
-          <p>When information is spread across spreadsheets, accounting systems, CRMs and operational tools, managers lose time building reports instead of running the business.</p>
+          <h2>You have information. Getting a clear answer takes too much work.</h2>
+          <p>
+            Growing businesses often reach the point where spreadsheets and disconnected systems
+            are no longer enough — but hiring a full data team is not realistic either.
+          </p>
         </div>
-        <div class="problem-grid">
+
+        <div class="pain-grid">
           <article class="card">
             <div class="icon">01</div>
-            <h3>Too much time goes into reporting</h3>
-            <p>Your team exports, cleans and combines data before management can even see what happened.</p>
+            <h3>Reports take hours to build</h3>
+            <p>Someone exports files, cleans them, combines them and checks the numbers before management can see the result.</p>
           </article>
+
           <article class="card">
             <div class="icon">02</div>
-            <h3>Your numbers live in silos</h3>
-            <p>Sales, finance, operations and project data can tell different stories when sources and definitions are disconnected.</p>
+            <h3>Your numbers live in different places</h3>
+            <p>Sales, finance, operations and project information sit across spreadsheets and business systems.</p>
           </article>
+
           <article class="card">
             <div class="icon">03</div>
-            <h3>Simple questions become projects</h3>
-            <p>A question like “Which projects are at risk?” can become a ticket, a spreadsheet exercise and a meeting.</p>
+            <h3>Simple questions become manual work</h3>
+            <p>“Why did margin drop?” or “Which projects are at risk?” can require another spreadsheet exercise.</p>
           </article>
+
           <article class="card">
             <div class="icon">04</div>
-            <h3>Problems are found too late</h3>
-            <p>Margin erosion, delays, invoice issues and underperforming customers can stay hidden until the monthly review.</p>
+            <h3>Problems show up too late</h3>
+            <p>Cost overruns, delays, weak customers and margin erosion may only become obvious during a review.</p>
           </article>
+
           <article class="card">
             <div class="icon">05</div>
-            <h3>AI needs your business context</h3>
-            <p>Generic AI is not enough if it does not understand your KPIs, business definitions and operational reality.</p>
+            <h3>You cannot justify a data hire yet</h3>
+            <p>You need better visibility, but a dedicated data engineer or BI team feels too expensive or too early.</p>
           </article>
+
           <article class="card">
             <div class="icon">06</div>
-            <h3>Analytics feels out of reach</h3>
-            <p>Growing teams often assume useful analytics requires a large data team, complex infrastructure and a long implementation.</p>
+            <h3>Generic AI does not know your business</h3>
+            <p>Useful answers require your definitions, KPIs, data and operational context — not generic answers from the internet.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="solution" class="solution">
+    <!-- HOW -->
+    <section id="how" class="solution">
       <div class="container">
         <div class="section-head">
-          <div class="eyebrow">The Orris approach</div>
-          <h2>From scattered data to one clear view of your business.</h2>
-          <p>We connect the systems you already use, automate the reporting work and put useful answers in front of the people who need them.</p>
+          <div class="eyebrow">How Orris works</div>
+          <h2>Start with one business problem. Build only what you need.</h2>
+          <p>
+            You do not need a large technology project. Orris starts with the reporting,
+            visibility or decision problem that is costing your business the most time or money.
+          </p>
         </div>
 
         <div class="solution-grid">
-          <div class="tech-stack">
-            <div class="tech"><div class="tech-num">01</div><div><b>Connect</b><span>Connect the spreadsheets, accounting systems, CRM, databases and operational tools you already use.</span></div></div>
-            <div class="tech"><div class="tech-num">02</div><div><b>Structure</b><span>Create consistent KPIs and trusted business definitions so everyone works from the same numbers.</span></div></div>
-            <div class="tech"><div class="tech-num">03</div><div><b>Visualize</b><span>Replace recurring manual reports with dashboards and focused business tools.</span></div></div>
-            <div class="tech"><div class="tech-num">04</div><div><b>Ask</b><span>Let managers ask business questions in plain language and explore the answers.</span></div></div>
-            <div class="tech"><div class="tech-num">05</div><div><b>Act</b><span>Surface exceptions, alerts and next actions so insights can lead to action.</span></div></div>
-          </div>
+          <div class="steps-list">
 
-          <div class="visual">
-            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=85" alt="Team reviewing business analytics">
-            <div class="visual-caption">
-              <b>Built around the questions your business actually asks.</b>
-              <span>Example: “Which projects are trending over budget, why, and what should we review first?”</span>
+            <div class="solution-step">
+              <div class="step-num">01</div>
+              <div>
+                <b>Find the problem</b>
+                <span>We identify the report, process or business question that creates the most friction.</span>
+              </div>
             </div>
+
+            <div class="solution-step">
+              <div class="step-num">02</div>
+              <div>
+                <b>Connect what you already use</b>
+                <span>Excel, accounting systems, CRM, databases and operational tools can become part of one view.</span>
+              </div>
+            </div>
+
+            <div class="solution-step">
+              <div class="step-num">03</div>
+              <div>
+                <b>Automate the work</b>
+                <span>Replace repetitive data preparation and recurring reporting with a repeatable process.</span>
+              </div>
+            </div>
+
+            <div class="solution-step">
+              <div class="step-num">04</div>
+              <div>
+                <b>See what is happening</b>
+                <span>Get consistent KPIs and a clear view of the business without rebuilding the report every time.</span>
+              </div>
+            </div>
+
+            <div class="solution-step">
+              <div class="step-num">05</div>
+              <div>
+                <b>Ask and act</b>
+                <span>Once the data is structured, managers can explore business questions in plain language and focus on action.</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
+    <!-- OFFER -->
+    <section id="assessment">
+      <div class="container">
+        <div class="offer">
+          <div class="offer-grid">
+
+            <div>
+              <div class="eyebrow">Start with a Free Data & Reporting Assessment</div>
+              <h2>Find one thing worth fixing first.</h2>
+              <p>
+                In a short conversation, we look at how your business currently creates reports,
+                where information gets stuck, and where automation or better visibility could make
+                a practical difference.
+              </p>
+
+              <ul class="offer-list">
+                <li><strong>✓</strong><span>Identify the most time-consuming reporting process.</span></li>
+                <li><strong>✓</strong><span>Find one visibility or automation opportunity.</span></li>
+                <li><strong>✓</strong><span>Understand what can realistically be improved without hiring a data team.</span></li>
+                <li><strong>✓</strong><span>Leave with a practical starting point — not a technology sales pitch.</span></li>
+              </ul>
+
+              <div style="margin-top:25px">
+                <a class="btn btn-primary" href="#contact">Book the Free Assessment →</a>
+              </div>
+            </div>
+
+            <div class="offer-card">
+              <b>What we'll look at</b>
+
+              <div class="offer-card-row">
+                <span>Reporting</span>
+                <strong>How is it built today?</strong>
+              </div>
+
+              <div class="offer-card-row">
+                <span>Data</span>
+                <strong>Where does it live?</strong>
+              </div>
+
+              <div class="offer-card-row">
+                <span>Time</span>
+                <strong>What is being repeated?</strong>
+              </div>
+
+              <div class="offer-card-row">
+                <span>Business</span>
+                <strong>What is hard to see?</strong>
+              </div>
+
+              <div class="offer-card-row">
+                <span>Opportunity</span>
+                <strong>What should come first?</strong>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERTICAL FOCUS -->
     <section id="use-cases">
       <div class="container">
         <div class="section-head">
-          <div class="eyebrow">Real business use cases</div>
-          <h2>Start with one expensive problem. Then expand.</h2>
-          <p>Orris can start with the business problem costing your team the most time or money, then expand as your needs grow.</p>
+          <div class="eyebrow">Built for construction & project-based businesses</div>
+          <h2>Know which projects are making money — before the monthly review.</h2>
+          <p>
+            Orris starts where construction and project-based businesses feel the most pressure:
+            project profitability, cost control, labor, invoices, schedules and reporting.
+          </p>
         </div>
 
         <div class="cases">
+
           <article class="case">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85" alt="Construction project">
+            <div class="case-top">
+              <span class="tag">Project Profitability</span>
+              <div class="case-number">01</div>
+            </div>
             <div class="case-body">
-              <span class="tag">Construction & Projects</span>
-              <h3>Know which projects are losing money before the review.</h3>
-              <p>Combine budgets, labor, invoices, subcontractors, tasks, delays and safety data into one operating view.</p>
+              <h3>See which projects are drifting away from the plan.</h3>
+              <p>
+                Bring budget, actual cost, labor and project information together so managers
+                can focus on projects that need attention.
+              </p>
               <ul>
                 <li>Budget vs. actual cost</li>
+                <li>Margin and variance trends</li>
+                <li>Project-level exceptions</li>
+                <li>Early visibility into cost deviations</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-top">
+              <span class="tag">Operations & Labor</span>
+              <div class="case-number">02</div>
+            </div>
+            <div class="case-body">
+              <h3>Find operational problems before they become expensive.</h3>
+              <p>
+                Connect labor, schedules, tasks and operational information to identify
+                unusual trends and projects that deserve attention.
+              </p>
+              <ul>
                 <li>Labor and productivity trends</li>
                 <li>Schedule and delay risk</li>
-                <li>Subcontractor and invoice visibility</li>
+                <li>Operational exceptions</li>
+                <li>Project performance visibility</li>
               </ul>
             </div>
           </article>
 
           <article class="case">
-            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=85" alt="Business team">
+            <div class="case-top">
+              <span class="tag">Invoices & Subcontractors</span>
+              <div class="case-number">03</div>
+            </div>
             <div class="case-body">
-              <span class="tag">Finance & Management</span>
-              <h3>Stop rebuilding financial reports every month.</h3>
-              <p>Give leaders a consistent picture of revenue, margin, expenses, cash-related indicators and business performance.</p>
+              <h3>Stop discovering invoice and subcontractor issues too late.</h3>
+              <p>
+                Create a clearer view of invoices, subcontractor costs and project commitments
+                without rebuilding the same spreadsheets every month.
+              </p>
               <ul>
-                <li>Executive KPI dashboard</li>
-                <li>Actual vs. budget</li>
-                <li>Margin and variance analysis</li>
-                <li>Natural-language follow-up questions</li>
+                <li>Invoice visibility</li>
+                <li>Subcontractor cost tracking</li>
+                <li>Project commitments</li>
+                <li>Variance and exception reporting</li>
               </ul>
             </div>
           </article>
 
-          <article class="case">
-            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85" alt="Retail analytics">
-            <div class="case-body">
-              <span class="tag">Sales & Customers</span>
-              <h3>See what is driving sales without waiting for a monthly report.</h3>
-              <p>Connect sales, customer and product information so teams can explore performance by segment, location and period.</p>
-              <ul>
-                <li>Sales performance</li>
-                <li>Customer segmentation</li>
-                <li>Product and location trends</li>
-                <li>Ad-hoc business questions</li>
-              </ul>
-            </div>
-          </article>
+        </div>
 
-          <article class="case">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85" alt="Operations team">
-            <div class="case-body">
-              <span class="tag">Operations</span>
-              <h3>Find operational problems before they become expensive.</h3>
-              <p>Surface exceptions and trends across operational data and put the right information in front of the people who need it.</p>
-              <ul>
-                <li>Operational scorecards</li>
-                <li>Exception monitoring</li>
-                <li>Trend analysis</li>
-                <li>Custom operational apps</li>
-              </ul>
-            </div>
-          </article>
+        <div class="transformation-result" style="margin-top:24px;">
+          <strong>One vertical. One clear problem: better control over project performance.</strong>
+          <span>
+            Start with one reporting or visibility problem and expand as the business needs more.
+          </span>
         </div>
       </div>
     </section>
 
+    <!-- DEMO -->
     <section id="demo">
       <div class="container">
         <div class="demo">
+
           <div class="video-wrap">
-            <!-- Replace demo-video.mp4 with your own video when ready -->
-            <video id="demoVideo" 
-              controls poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-              controls
-              playsinline
-              preload="metadata"
-              webkit-playsinline
-              >
+            <video id="demoVideo"
+              poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" controls playsinline webkit-playsinline preload="metadata">
               <source src="36168_iphone.mp4" type="video/mp4">
             </video>
+
             <div class="video-placeholder" id="videoPlaceholder">
               <div>
                 <div class="play">▶</div>
-                <h3>Your Orris Data/AI Demo</h3>
-                <p>See how Orris turns a business question into an actionable answer.</p>
+                <h3>See Orris in action</h3>
+                <p>Watch how a business question moves from KPI to cause — and into a practical next step.</p>
               </div>
             </div>
           </div>
 
           <div>
             <div class="eyebrow">See it in action</div>
-            <h2>Ask a question. Find the cause. Take action.</h2>
-            <p>See how a business question can move from a KPI to the underlying cause and then to a practical next step.</p>
-            <div class="steps">
-              <div class="step"><strong>01</strong><h4>Ask</h4><p>“Which projects are over budget?”</p></div>
-              <div class="step"><strong>02</strong><h4>Understand</h4><p>Find the cost, trend or operational driver behind the result.</p></div>
-              <div class="step"><strong>03</strong><h4>Act</h4><p>Use the insight to decide what needs attention next.</p></div>
+            <h2>Ask a question. Understand what changed. Act.</h2>
+            <p>
+              Orris is designed around the questions business managers actually ask,
+              not around technology for technology's sake.
+            </p>
+
+            <div class="demo-steps">
+              <div class="demo-step">
+                <strong>01</strong>
+                <div>
+                  <b>Ask</b>
+                  <span>“Which projects are over budget?”</span>
+                </div>
+              </div>
+
+              <div class="demo-step">
+                <strong>02</strong>
+                <div>
+                  <b>Understand</b>
+                  <span>Find the cost, trend or operational driver behind the result.</span>
+                </div>
+              </div>
+
+              <div class="demo-step">
+                <strong>03</strong>
+                <div>
+                  <b>Act</b>
+                  <span>Use the information to decide what needs attention next.</span>
+                </div>
+              </div>
             </div>
+
             <div style="margin-top:22px">
-              <a class="btn btn-primary" href="#contact">Get a Free Data Assessment</a>
+              <a class="btn btn-primary" href="#assessment">Find Your First Opportunity</a>
             </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">What changes</div>
+          <h2>The outcome is business control, not another technology project.</h2>
+          <p>
+            Orris is useful when it removes recurring work, makes important numbers easier to trust,
+            or helps a manager see a problem earlier.
+          </p>
+        </div>
+
+        <div class="value-grid">
+          <div class="value-card">
+            <div class="big">Less reporting work</div>
+            <p>Spend less time copying, cleaning, reconciling and rebuilding recurring reports.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="big">Earlier visibility</div>
+            <p>Spot cost overruns, delays, weak performance and other exceptions before the next review.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="big">Faster answers</div>
+            <p>Give managers a consistent way to explore the questions that keep coming back.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="business-value">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">What the business gets</div>
-          <h2>Less manual work. Better visibility. Faster decisions.</h2>
-          <p>The goal is not another dashboard. The goal is to give your team more time, clearer numbers and earlier visibility into problems that affect revenue, cost and operations.</p>
-        </div>
-        <div class="problem-grid">
-          <article class="card"><div class="icon">01</div><h3>Save reporting time</h3><p>Automate repetitive data preparation and recurring reports so your team can spend less time copying, cleaning and reconciling spreadsheets.</p></article>
-          <article class="card"><div class="icon">02</div><h3>Find money leaks</h3><p>Surface cost overruns, margin erosion, delayed work, invoice issues and other exceptions before they become larger problems.</p></article>
-          <article class="card"><div class="icon">03</div><h3>Make decisions faster</h3><p>Give managers a consistent view of the business and a simple way to ask follow-up questions without waiting for another report.</p></article>
-        </div>
-      </div>
-    </section>
-
+    <!-- CONTACT -->
     <section id="contact">
       <div class="container contact">
+
         <div>
-          <div class="eyebrow">Start the conversation</div>
-          <h2>Find the first business problem worth solving.</h2>
-          <p>Tell us where your data is today, what takes too much manual effort, and where money, time or visibility are being lost. We’ll identify a practical starting point.</p>
-          <p><strong>Good starting questions:</strong></p>
-          <ul style="color:var(--muted);padding-left:18px">
-            <li>How much time does your team spend preparing reports?</li>
-            <li>Which KPI is hardest to trust?</li>
-            <li>What question do managers repeatedly ask?</li>
-            <li>Where are delays, cost overruns or revenue leaks discovered too late?</li>
+          <div class="eyebrow">Start small</div>
+          <h2>You don't need to know what technology you need.</h2>
+          <p>
+            Tell us what takes too much time, what is difficult to see,
+            or what business question you keep asking. We'll help identify a practical starting point.
+          </p>
+
+          <ul class="contact-checks">
+            <li><strong>✓</strong> You use Excel or several business systems.</li>
+            <li><strong>✓</strong> Reporting takes recurring manual effort.</li>
+            <li><strong>✓</strong> You want better visibility without a large technology project.</li>
+            <li><strong>✓</strong> You are not ready to hire a dedicated data team.</li>
           </ul>
         </div>
 
         <form id="contactForm">
-          <label>Full name<input required name="name" placeholder="Jane Smith"></label>
-          <label>Company<input required name="company" placeholder="Company name"></label>
-          <label>Business email<input required type="email" name="email" placeholder="jane@company.com"></label>
-          <label>Phone (optional)<input name="phone" placeholder="+1 519 ..."></label>
-          <label class="full">What do you want to improve?
+          <label>
+            Full name
+            <input required name="name" placeholder="Jane Smith">
+          </label>
+
+          <label>
+            Company
+            <input required name="company" placeholder="Company name">
+          </label>
+
+          <label>
+            Business email
+            <input required type="email" name="email" placeholder="jane@company.com">
+          </label>
+
+          <label>
+            Phone (optional)
+            <input name="phone" placeholder="+1 519 ...">
+          </label>
+
+          <label class="full">
+            What is taking too much time?
             <select name="interest">
-              <option>Automated reporting</option>
+              <option>Manual reporting</option>
+              <option>Excel / spreadsheet consolidation</option>
+              <option>Business visibility</option>
               <option>Executive dashboard</option>
               <option>Data integration</option>
-              <option>Natural-language analytics</option>
-              <option>AI / automation</option>
+              <option>Business questions / AI</option>
               <option>Not sure yet</option>
             </select>
           </label>
-          <label class="full">Tell us about your challenge<textarea required name="message" placeholder="Example: We currently combine Excel reports from 4 systems every month..."></textarea></label>
-          <div class="form-note">Your inquiry will open in your email application with the details pre-filled.</div>
-          <div class="success" id="success">Your inquiry is ready. Your email application should open now.</div>
-          <button class="btn btn-primary full" type="submit">Contact Orris Data/AI →</button>
+
+          <label class="full">
+            Tell us about the challenge
+            <textarea required name="message" placeholder="Example: Every month we combine Excel reports from several systems before management can review the numbers..."></textarea>
+          </label>
+
+          <div class="form-note">
+            Submitting the form will open your email application with the details pre-filled.
+          </div>
+
+          <div class="success" id="success">
+            Your inquiry is ready. Your email application should open now.
+          </div>
+
+          <button class="btn btn-primary full" type="submit">
+            Request My Free Assessment →
+          </button>
         </form>
+
       </div>
     </section>
+
   </main>
 
   <footer>
     <div class="container footer-inner">
-      <span>© 2026 Orris Data/AI. Data • AI • Business Intelligence.</span>
-      <span>Built for practical business outcomes.</span>
+      <div class="footer-contact">
+        <span>© 2026 Orris Data/AI. Practical data solutions for growing businesses.</span>
+        <span>London, Ontario, Canada</span>
+        <a href="https://wa.me/12264489499" target="_blank" rel="noopener noreferrer" aria-label="Contact Orris Data AI on WhatsApp">
+          WhatsApp: +1 226 448 9499
+        </a>
+      </div>
+      <span>Your data team — without hiring one.</span>
     </div>
   </footer>
 
   <script>
-    // CHANGE THIS before publishing:
     const CONTACT_EMAIL = "alicia.arron@gmail.com";
 
+    // Contact form
     const form = document.getElementById("contactForm");
     const success = document.getElementById("success");
-    const video = document.getElementById("demoVideo");
-    const placeholder = document.getElementById("videoPlaceholder");
-
-    video.addEventListener("loadeddata", () => placeholder.style.display = "none");
-    video.addEventListener("error", () => placeholder.style.display = "grid");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const data = new FormData(form);
-      const subject = encodeURIComponent(`Orris Data/AI inquiry — ${data.get("company")}`);
+
+      const subject = encodeURIComponent(
+        `Orris Free Data Assessment — ${data.get("company")}`
+      );
+
       const body = encodeURIComponent(
 `Name: ${data.get("name")}
 Company: ${data.get("company")}
 Email: ${data.get("email")}
 Phone: ${data.get("phone")}
-Interest: ${data.get("interest")}
+Main challenge: ${data.get("interest")}
 
 Challenge:
 ${data.get("message")}`
       );
 
-      if (CONTACT_EMAIL === "YOUR_EMAIL@example.com") {
-        alert("Before publishing, replace YOUR_EMAIL@example.com in script.js/index.html with the email address where you want to receive inquiries.");
-        return;
-      }
+      window.location.href =
+        `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       success.style.display = "block";
+    });
+
+    // Demo video fallback
+    const video = document.getElementById("demoVideo");
+    const placeholder = document.getElementById("videoPlaceholder");
+
+    video.addEventListener("loadeddata", () => {
+      placeholder.style.display = "none";
+    });
+
+    video.addEventListener("error", () => {
+      placeholder.style.display = "grid";
     });
 
     // Mobile navigation
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileNav = document.getElementById("mobileNav");
 
-    if (mobileMenu && mobileNav) {
-      mobileMenu.addEventListener("click", () => {
-        const isOpen = mobileNav.classList.toggle("active");
-        mobileMenu.setAttribute("aria-expanded", String(isOpen));
-        mobileMenu.setAttribute(
-          "aria-label",
-          isOpen ? "Close navigation menu" : "Open navigation menu"
-        );
-      });
+    mobileMenu.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("active");
+      mobileMenu.setAttribute("aria-expanded", String(isOpen));
+      mobileMenu.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+    });
 
-      // Close the menu after selecting a navigation item.
-      mobileNav.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileNav.classList.remove("active");
-          mobileMenu.setAttribute("aria-expanded", "false");
-          mobileMenu.setAttribute("aria-label", "Open navigation menu");
-        });
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+        mobileMenu.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-label", "Open navigation menu");
       });
+    });
 
-      // Close if the user taps outside the mobile navigation.
-      document.addEventListener("click", (event) => {
-        if (
-          mobileNav.classList.contains("active") &&
-          !mobileNav.contains(event.target) &&
-          !mobileMenu.contains(event.target)
-        ) {
-          mobileNav.classList.remove("active");
-          mobileMenu.setAttribute("aria-expanded", "false");
-          mobileMenu.setAttribute("aria-label", "Open navigation menu");
-        }
-      });
-    }
-
+    document.addEventListener("click", (event) => {
+      if (
+        mobileNav.classList.contains("active") &&
+        !mobileNav.contains(event.target) &&
+        !mobileMenu.contains(event.target)
+      ) {
+        mobileNav.classList.remove("active");
+        mobileMenu.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-label", "Open navigation menu");
+      }
+    });
   </script>
+
 </body>
 </html>
