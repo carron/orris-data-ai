@@ -808,8 +808,14 @@
         <div class="demo">
           <div class="video-wrap">
             <!-- Replace demo-video.mp4 with your own video when ready -->
-            <video id="demoVideo" controls poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80">
-              <source src="demo-video.mp4" type="video/mp4">
+            <video id="demoVideo" 
+              controls poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+              controls
+              playsinline
+              preload="metadata"
+              webkit-playsinline
+              >
+              <source src="36168_iphone.mp4" type="video/mp4">
             </video>
             <div class="video-placeholder" id="videoPlaceholder">
               <div>
