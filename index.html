@@ -229,7 +229,7 @@
       overflow:hidden;
       background:#030b16;
       box-shadow:0 28px 90px rgba(0,0,0,.38);
-      cursor:pointer;
+      cursor:default;
     }
 	.intro-poster.hidden {
   display: none;
@@ -247,7 +247,8 @@
       display:block;
       object-fit:cover;
       object-position:center;
-      z-index:2;
+      z-index:0;
+      pointer-events:none;
     }
 
     .intro-video video {
@@ -255,7 +256,7 @@
       inset:0;
       width:100%;
       height:100%;
-      display:none;
+      display:block;
       object-fit:contain;
       object-position:center;
       background:#030b16;
@@ -266,18 +267,10 @@
       appearance:none;
     }
 
-    .intro-video video.is-playing {
-      display:block;
-    }
-
-    /* Prevent native media UI from being used for this presentation video. */
-    .intro-video video::-webkit-media-controls,
-    .intro-video video::-webkit-media-controls-panel,
-    .intro-video video::-webkit-media-controls-start-playback-button,
-    .intro-video video::-webkit-media-controls-overlay-play-button,
-    .intro-video video::-webkit-media-controls-play-button {
-      display:none !important;
-      -webkit-appearance:none !important;
+    /* Native controls are intentionally enabled for reliable playback on desktop,
+       iPhone/iPad and Android. The browser supplies play/pause, seek, volume and fullscreen. */
+    .intro-video video::-webkit-media-controls-panel {
+      background:linear-gradient(180deg,rgba(3,11,22,.15),rgba(3,11,22,.92));
     }
 
     @media (max-width:768px) {
@@ -1514,13 +1507,14 @@
         <video
           id="introVideo"
           aria-label="Orris Data AI business model"
-          muted autoplay playsinline webkit-playsinline preload="auto">
+          controls
+          muted
+          playsinline
+          webkit-playsinline
+          preload="metadata">
           <source src="intro-video.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
-        <button class="intro-sound" id="introSound" type="button" aria-label="Turn sound on">
-          Sound on
-        </button>
       </div>
     </section>
 
@@ -2163,60 +2157,22 @@ ${data.get("message")}`
   </script>
 
 <script>
+    // Intro video: native controls provide play/pause, seek, volume and fullscreen.
     const introVideo = document.getElementById("introVideo");
-    const introSound = document.getElementById("introSound");
-    const introWrap = document.getElementById("introVideoWrap");
     const introPoster = document.getElementById("introPoster");
 
     if (introVideo) {
-      introVideo.muted = true;
-      introVideo.setAttribute("muted", "");
-
       const revealVideo = () => {
-        introVideo.classList.add("is-playing");
+        introVideo.style.display = "block";
         if (introPoster) introPoster.style.display = "none";
       };
 
-      introVideo.addEventListener("playing", revealVideo);
-
-      const startIntro = () => {
-        introVideo.play().catch(() => {
-          // Keep the poster only if autoplay is blocked.
-          introVideo.classList.remove("is-playing");
-          if (introPoster) introPoster.style.display = "block";
-        });
-      };
-
-      // Start muted. Chrome, Edge and Safari can autoplay this without audio.
-      startIntro();
-      introVideo.addEventListener("canplay", startIntro, { once:true });
-
-      // If autoplay is blocked, a click starts the video. The video is only
-      // rendered after playback begins, so no native blue play circle appears.
-      if (introWrap) {
-        introWrap.addEventListener("click", (event) => {
-          if (event.target === introSound) return;
-          if (introVideo.paused) {
-            introVideo.play().then(revealVideo).catch(() => {});
-          }
-        });
-      }
-
-      if (introSound) {
-        introSound.addEventListener("click", (event) => {
-          event.stopPropagation();
-          introVideo.muted = !introVideo.muted;
-          if (!introVideo.muted) introVideo.volume = 1;
-          if (introVideo.paused) {
-            introVideo.play().then(revealVideo).catch(() => {});
-          }
-          introSound.textContent = introVideo.muted ? "Sound on" : "Sound off";
-          introSound.setAttribute(
-            "aria-label",
-            introVideo.muted ? "Turn sound on" : "Turn sound off"
-          );
-        });
-      }
+      introVideo.addEventListener("play", revealVideo);
+      introVideo.addEventListener("loadedmetadata", () => {
+        // Keep autoplay off so the visitor can use the controls immediately.
+        introVideo.pause();
+        introVideo.currentTime = 0;
+      }, { once: true });
     }
   </script>
 </body>
