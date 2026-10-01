@@ -223,32 +223,69 @@
       position:relative;
       width:min(var(--max),calc(100% - 40px));
       margin:auto;
+      aspect-ratio:16/9;
       border:1px solid rgba(255,255,255,.12);
       border-radius:28px;
       overflow:hidden;
       background:#030b16;
       box-shadow:0 28px 90px rgba(0,0,0,.38);
+      cursor:pointer;
+    }
+	.intro-poster.hidden {
+  display: none;
+}
+
+
+    /* Poster is the initial visual. The video element is completely removed
+       from rendering until playback has actually started, so the browser
+       cannot draw its native play overlay over the poster. */
+    .intro-poster {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:center;
+      z-index:2;
     }
 
     .intro-video video {
-      display:block;
+      position:absolute;
+      inset:0;
       width:100%;
-      height:auto;
-      aspect-ratio:16/9;
+      height:100%;
+      display:none;
       object-fit:contain;
       object-position:center;
       background:#030b16;
+      z-index:1;
+      border:0;
+      outline:0;
+      -webkit-appearance:none;
+      appearance:none;
     }
-@media (max-width: 700px) {
-      .intro-video {
-        padding:16px 0 4px;
-      }
 
+    .intro-video video.is-playing {
+      display:block;
+    }
+
+    /* Prevent native media UI from being used for this presentation video. */
+    .intro-video video::-webkit-media-controls,
+    .intro-video video::-webkit-media-controls-panel,
+    .intro-video video::-webkit-media-controls-start-playback-button,
+    .intro-video video::-webkit-media-controls-overlay-play-button,
+    .intro-video video::-webkit-media-controls-play-button {
+      display:none !important;
+      -webkit-appearance:none !important;
+    }
+
+    @media (max-width:768px) {
       .intro-video-wrap {
         width:calc(100% - 24px);
         border-radius:18px;
       }
-}
+    }
 
     /* Hero */
     .hero { padding:86px 0 72px; }
@@ -1470,12 +1507,15 @@
 
     <!-- BUSINESS MODEL VIDEO -->
     <section class="intro-video" aria-label="Orris business model">
-      <div class="intro-video-wrap">
+      <div class="intro-video-wrap" id="introVideoWrap">
+        <img class="intro-poster" id="introPoster"
+             src="orris_video_poster.jpg"
+             alt="Orris Data AI — Business Problem First. Technology Second.">
         <video
           id="introVideo"
           aria-label="Orris Data AI business model"
-          autoplay muted playsinline webkit-playsinline preload="auto">
-          <source src="orris_business_model_video_sharp_web.mp4" type="video/mp4">
+          muted autoplay playsinline webkit-playsinline preload="auto">
+          <source src="orris_business_model_video_corrected_energetic.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
         <button class="intro-sound" id="introSound" type="button" aria-label="Turn sound on">
@@ -2125,16 +2165,58 @@ ${data.get("message")}`
 <script>
     const introVideo = document.getElementById("introVideo");
     const introSound = document.getElementById("introSound");
-    if (introVideo && introSound) {
+    const introWrap = document.getElementById("introVideoWrap");
+    const introPoster = document.getElementById("introPoster");
+
+    if (introVideo) {
       introVideo.muted = true;
-      introVideo.play().catch(() => {});
-      introSound.addEventListener("click", () => {
-        introVideo.muted = false;
-        introVideo.volume = 1;
-        introVideo.play().catch(() => {});
-        introSound.textContent = "Sound off";
-        introSound.setAttribute("aria-label", "Turn sound off");
-      });
+      introVideo.setAttribute("muted", "");
+
+      const revealVideo = () => {
+        introVideo.classList.add("is-playing");
+        if (introPoster) introPoster.style.display = "none";
+      };
+
+      introVideo.addEventListener("playing", revealVideo);
+
+      const startIntro = () => {
+        introVideo.play().catch(() => {
+          // Keep the poster only if autoplay is blocked.
+          introVideo.classList.remove("is-playing");
+          if (introPoster) introPoster.style.display = "block";
+        });
+      };
+
+      // Start muted. Chrome, Edge and Safari can autoplay this without audio.
+      startIntro();
+      introVideo.addEventListener("canplay", startIntro, { once:true });
+
+      // If autoplay is blocked, a click starts the video. The video is only
+      // rendered after playback begins, so no native blue play circle appears.
+      if (introWrap) {
+        introWrap.addEventListener("click", (event) => {
+          if (event.target === introSound) return;
+          if (introVideo.paused) {
+            introVideo.play().then(revealVideo).catch(() => {});
+          }
+        });
+      }
+
+      if (introSound) {
+        introSound.addEventListener("click", (event) => {
+          event.stopPropagation();
+          introVideo.muted = !introVideo.muted;
+          if (!introVideo.muted) introVideo.volume = 1;
+          if (introVideo.paused) {
+            introVideo.play().then(revealVideo).catch(() => {});
+          }
+          introSound.textContent = introVideo.muted ? "Sound on" : "Sound off";
+          introSound.setAttribute(
+            "aria-label",
+            introVideo.muted ? "Turn sound on" : "Turn sound off"
+          );
+        });
+      }
     }
   </script>
 </body>
