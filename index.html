@@ -214,81 +214,46 @@
     }
 
 
-    /* Business model video at the top */
+    /* Business model video — same video structure/style as #demo */
     .intro-video {
       padding:28px 0 10px;
     }
 
+    .intro-video-demo {
+      display:block;
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+    }
+
     .intro-video-wrap {
       position:relative;
-      width:min(var(--max),calc(100% - 40px));
-      margin:auto;
+      width:100%;
+      max-width:none;
       aspect-ratio:16/9;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:28px;
       overflow:hidden;
+      border-radius:var(--radius);
       background:#030b16;
+      border:1px solid var(--line);
       box-shadow:0 28px 90px rgba(0,0,0,.38);
-      cursor:default;
     }
-	.intro-poster.hidden {
-  display: none;
-}
 
-
-    /* Poster is the initial visual. The video element is completely removed
-       from rendering until playback has actually started, so the browser
-       cannot draw its native play overlay over the poster. */
-    .intro-poster {
-      position:absolute;
-      inset:0;
+    .intro-video-wrap video {
       width:100%;
       height:100%;
       display:block;
-      object-fit:cover;
-      object-position:center;
-      z-index:0;
-      pointer-events:none;
-    }
-
-    .intro-video video {
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      display:none;
       object-fit:contain;
       object-position:center;
       background:#030b16;
-      z-index:1;
       border:0;
       outline:0;
       -webkit-appearance:none;
       appearance:none;
     }
 
-    /* Native controls are intentionally enabled for reliable playback on desktop,
-       iPhone/iPad and Android. The browser supplies play/pause, seek, volume and fullscreen. */
-    .intro-video video::-webkit-media-controls-panel {
+    .intro-video-wrap video::-webkit-media-controls-panel {
       background:linear-gradient(180deg,rgba(3,11,22,.15),rgba(3,11,22,.92));
-    }
-
-    /* Poster is the default state. It disappears only after Play is pressed. */
-    .intro-video-wrap.is-playing .intro-poster {
-      display:none !important;
-    }
-
-    .intro-video-wrap.is-playing video {
-      display:block !important;
-    }
-
-
-    
-    @media (max-width:768px) {
-      .intro-video-wrap {
-        width:calc(100% - 24px);
-        border-radius:18px;
-      }
     }
 
     /* Hero */
@@ -1458,18 +1423,6 @@
       }
     }
 
-    @media (max-width:768px) {
-      .intro-video-wrap {
-        aspect-ratio:16 / 9;
-      }
-
-      .intro-video video {
-        width:100%;
-        height:100%;
-        object-fit:contain;
-      }
-    }
-
   </style>
 </head>
 
@@ -1511,21 +1464,23 @@
 
     <!-- BUSINESS MODEL VIDEO -->
     <section class="intro-video" aria-label="Orris business model">
-      <div class="intro-video-wrap" id="introVideoWrap">
-        <img class="intro-poster" id="introPoster"
-             src="orris_intro_default.jpg"
-             alt="Orris Data AI — Business Problem First. Technology Second.">
-        <video
-          id="introVideo"
-          aria-label="Orris Data AI business model"
-          controls
-          muted
-          playsinline
-          webkit-playsinline
-          preload="metadata">
-          <source src="intro-video.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video>
+      <div class="container">
+        <div class="intro-video-demo">
+
+          <div class="video-wrap intro-video-wrap">
+            <video id="introVideo"
+              poster="orris_intro_default.jpg"
+              aria-label="Orris Data AI business model"
+              controls
+              playsinline
+              webkit-playsinline
+              preload="metadata">
+              <source src="intro-video.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -2161,49 +2116,16 @@ ${data.get("message")}`
   </script>
 
 <script>
-    // Intro video:
-    // Default = poster visible, video hidden.
-    // Play = poster disappears and video becomes visible.
-    // End = poster returns.
+    // Intro video uses the same native HTML5 video behavior as #demo.
     const introVideo = document.getElementById("introVideo");
-    const introVideoWrap = document.getElementById("introVideoWrap");
 
-    if (introVideo && introVideoWrap) {
-
-      // Clicking the poster starts playback.
-      introVideoWrap.addEventListener("click", (event) => {
-        if (!introVideoWrap.classList.contains("is-playing") && event.target === introVideoWrap.querySelector(".intro-poster")) {
-          introVideo.play().catch(() => {});
-        }
-      });
-
+    if (introVideo) {
+      // No autoplay. When the visitor explicitly presses Play,
+      // enable audio at full volume.
       introVideo.addEventListener("play", () => {
-        introVideoWrap.classList.add("is-playing");
-
-        // Audio is enabled only after the visitor explicitly presses Play
-        // or clicks the poster image.
         introVideo.muted = false;
         introVideo.volume = 1;
       });
-
-      introVideo.addEventListener("pause", () => {
-        // Keep the video visible when pausing after playback has started.
-        if (introVideo.currentTime === 0) {
-          introVideoWrap.classList.remove("is-playing");
-        }
-      });
-
-      introVideo.addEventListener("ended", () => {
-        introVideoWrap.classList.remove("is-playing");
-        introVideo.currentTime = 0;
-      });
-
-      // Never autoplay; always start from the beginning.
-      introVideo.addEventListener("loadedmetadata", () => {
-        introVideo.pause();
-        introVideo.currentTime = 0;
-        introVideoWrap.classList.remove("is-playing");
-      }, { once: true });
     }
   </script>
 </body>
