@@ -235,7 +235,8 @@
       width:100%;
       height:auto;
       aspect-ratio:16/9;
-      object-fit:cover;
+      object-fit:contain;
+      object-position:center;
       background:#030b16;
     }
 @media (max-width: 700px) {
@@ -1386,6 +1387,48 @@
       }
     }
 
+
+    .intro-sound {
+      position:absolute;
+      right:16px;
+      bottom:16px;
+      z-index:5;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:999px;
+      padding:8px 13px;
+      background:rgba(3,11,22,.72);
+      color:#fff;
+      font:600 12px/1 Inter, sans-serif;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+
+    .intro-sound:hover {
+      background:rgba(3,11,22,.9);
+    }
+
+    @media (max-width:768px) {
+      .intro-sound {
+        right:10px;
+        bottom:10px;
+        padding:7px 11px;
+        font-size:11px;
+      }
+    }
+
+    @media (max-width:768px) {
+      .intro-video-wrap {
+        aspect-ratio:16 / 9;
+      }
+
+      .intro-video video {
+        width:100%;
+        height:100%;
+        object-fit:contain;
+      }
+    }
+
   </style>
 </head>
 
@@ -1429,11 +1472,15 @@
     <section class="intro-video" aria-label="Orris business model">
       <div class="intro-video-wrap">
         <video
-          poster="images/logovertical.png"
-          aria-label="Orris Data AI business model" controls playsinline webkit-playsinline preload="metadata">
+          id="introVideo"
+          aria-label="Orris Data AI business model"
+          autoplay muted playsinline webkit-playsinline preload="auto">
           <source src="orris_business_model_video_sharp_web.mp4" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
+        <button class="intro-sound" id="introSound" type="button" aria-label="Turn sound on">
+          Sound on
+        </button>
       </div>
     </section>
 
@@ -1988,7 +2035,9 @@
       <div class="footer-contact">
         <span>© 2026 Orris Data/AI. Practical data solutions for growing businesses.</span>
         <span>London, Ontario, Canada</span>
-
+        <a href="https://wa.me/12264489499" target="_blank" rel="noopener noreferrer" aria-label="Contact Orris Data AI on WhatsApp">
+          WhatsApp: +1 226 448 9499
+        </a>
       </div>
       <span>Your data team — without hiring one.</span>
     </div>
@@ -2073,5 +2122,20 @@ ${data.get("message")}`
     });
   </script>
 
+<script>
+    const introVideo = document.getElementById("introVideo");
+    const introSound = document.getElementById("introSound");
+    if (introVideo && introSound) {
+      introVideo.muted = true;
+      introVideo.play().catch(() => {});
+      introSound.addEventListener("click", () => {
+        introVideo.muted = false;
+        introVideo.volume = 1;
+        introVideo.play().catch(() => {});
+        introSound.textContent = "Sound off";
+        introSound.setAttribute("aria-label", "Turn sound off");
+      });
+    }
+  </script>
 </body>
 </html>
