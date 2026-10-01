@@ -273,6 +273,19 @@
       background:linear-gradient(180deg,rgba(3,11,22,.15),rgba(3,11,22,.92));
     }
 
+
+    /* Desktop: do not display the poster image because it contains the
+       unwanted center arrow. The video itself remains visible with controls. */
+    @media (min-width:769px) {
+      .intro-video .intro-poster {
+        display:none !important;
+      }
+
+      .intro-video video {
+        display:block !important;
+      }
+    }
+
     @media (max-width:768px) {
       .intro-video-wrap {
         width:calc(100% - 24px);
@@ -2168,8 +2181,15 @@ ${data.get("message")}`
       };
 
       introVideo.addEventListener("play", revealVideo);
+
+      // Do not autoplay. When the visitor explicitly presses Play,
+      // start the video with audio enabled.
+      introVideo.addEventListener("play", () => {
+        introVideo.muted = false;
+        introVideo.volume = 1;
+      });
+
       introVideo.addEventListener("loadedmetadata", () => {
-        // Keep autoplay off so the visitor can use the controls immediately.
         introVideo.pause();
         introVideo.currentTime = 0;
       }, { once: true });
