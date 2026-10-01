@@ -1866,8 +1866,7 @@
               controls
               playsinline
               webkit-playsinline
-              preload="metadata"
-              muted>
+              preload="metadata">
               <source src="demo-video.mp4" type="video/mp4">
               Your browser does not support HTML5 video.
             </video>
@@ -2075,7 +2074,7 @@ ${data.get("message")}`
       success.style.display = "block";
     });
 
-    // Demo video fallback
+    // Demo video fallback + sound on when the visitor presses Play
     const video = document.getElementById("demoVideo");
     const placeholder = document.getElementById("videoPlaceholder");
 
@@ -2092,6 +2091,13 @@ ${data.get("message")}`
       video.addEventListener("canplay", hidePlaceholder);
       video.addEventListener("playing", hidePlaceholder);
       video.addEventListener("error", showPlaceholder);
+
+      // When the visitor explicitly presses Play, enable audio.
+      // This is allowed because it happens inside a user-initiated interaction.
+      video.addEventListener("play", () => {
+        video.muted = false;
+        video.volume = 1;
+      });
 
       // Safari/iPhone can defer loading until the user interacts.
       // Explicitly ask the browser to load the MP4 without autoplay.
