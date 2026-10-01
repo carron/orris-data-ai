@@ -2170,10 +2170,18 @@ ${data.get("message")}`
 
     if (introVideo && introVideoWrap) {
 
+      // Clicking the poster starts playback.
+      introVideoWrap.addEventListener("click", (event) => {
+        if (!introVideoWrap.classList.contains("is-playing") && event.target === introVideoWrap.querySelector(".intro-poster")) {
+          introVideo.play().catch(() => {});
+        }
+      });
+
       introVideo.addEventListener("play", () => {
         introVideoWrap.classList.add("is-playing");
 
-        // Audio is enabled only after the visitor explicitly presses Play.
+        // Audio is enabled only after the visitor explicitly presses Play
+        // or clicks the poster image.
         introVideo.muted = false;
         introVideo.volume = 1;
       });
