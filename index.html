@@ -1862,8 +1862,14 @@
 
           <div class="video-wrap">
             <video id="demoVideo"
-              poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" controls playsinline webkit-playsinline preload="metadata">
-              <source src="36168_iphone.mp4" type="video/mp4">
+              poster="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+              controls
+              playsinline
+              webkit-playsinline
+              preload="metadata"
+              muted>
+              <source src="demo-video.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
             </video>
 
             <div class="video-placeholder" id="videoPlaceholder">
@@ -2073,13 +2079,24 @@ ${data.get("message")}`
     const video = document.getElementById("demoVideo");
     const placeholder = document.getElementById("videoPlaceholder");
 
-    video.addEventListener("loadeddata", () => {
-      placeholder.style.display = "none";
-    });
+    if (video && placeholder) {
+      const hidePlaceholder = () => {
+        placeholder.style.display = "none";
+      };
 
-    video.addEventListener("error", () => {
-      placeholder.style.display = "grid";
-    });
+      const showPlaceholder = () => {
+        placeholder.style.display = "grid";
+      };
+
+      video.addEventListener("loadedmetadata", hidePlaceholder);
+      video.addEventListener("canplay", hidePlaceholder);
+      video.addEventListener("playing", hidePlaceholder);
+      video.addEventListener("error", showPlaceholder);
+
+      // Safari/iPhone can defer loading until the user interacts.
+      // Explicitly ask the browser to load the MP4 without autoplay.
+      video.load();
+    }
 
     // Mobile navigation
     const mobileMenu = document.getElementById("mobileMenu");
