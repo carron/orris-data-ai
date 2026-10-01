@@ -256,7 +256,7 @@
       inset:0;
       width:100%;
       height:100%;
-      display:block;
+      display:none;
       object-fit:contain;
       object-position:center;
       background:#030b16;
@@ -273,19 +273,17 @@
       background:linear-gradient(180deg,rgba(3,11,22,.15),rgba(3,11,22,.92));
     }
 
-
-    /* Desktop: do not display the poster image because it contains the
-       unwanted center arrow. The video itself remains visible with controls. */
-    @media (min-width:769px) {
-      .intro-video .intro-poster {
-        display:none !important;
-      }
-
-      .intro-video video {
-        display:block !important;
-      }
+    /* Poster is the default state. It disappears only after Play is pressed. */
+    .intro-video-wrap.is-playing .intro-poster {
+      display:none !important;
     }
 
+    .intro-video-wrap.is-playing video {
+      display:block !important;
+    }
+
+
+    
     @media (max-width:768px) {
       .intro-video-wrap {
         width:calc(100% - 24px);
@@ -2163,28 +2161,40 @@ ${data.get("message")}`
   </script>
 
 <script>
-    // Intro video: native controls provide play/pause, seek, volume and fullscreen.
+    // Intro video:
+    // Default = poster visible, video hidden.
+    // Play = poster disappears and video becomes visible.
+    // End = poster returns.
     const introVideo = document.getElementById("introVideo");
-    const introPoster = document.getElementById("introPoster");
+    const introVideoWrap = document.getElementById("introVideoWrap");
 
-    if (introVideo) {
-      const revealVideo = () => {
-        introVideo.style.display = "block";
-        if (introPoster) introPoster.style.display = "none";
-      };
+    if (introVideo && introVideoWrap) {
 
-      introVideo.addEventListener("play", revealVideo);
-
-      // Do not autoplay. When the visitor explicitly presses Play,
-      // start the video with audio enabled.
       introVideo.addEventListener("play", () => {
+        introVideoWrap.classList.add("is-playing");
+
+        // Audio is enabled only after the visitor explicitly presses Play.
         introVideo.muted = false;
         introVideo.volume = 1;
       });
 
+      introVideo.addEventListener("pause", () => {
+        // Keep the video visible when pausing after playback has started.
+        if (introVideo.currentTime === 0) {
+          introVideoWrap.classList.remove("is-playing");
+        }
+      });
+
+      introVideo.addEventListener("ended", () => {
+        introVideoWrap.classList.remove("is-playing");
+        introVideo.currentTime = 0;
+      });
+
+      // Never autoplay; always start from the beginning.
       introVideo.addEventListener("loadedmetadata", () => {
         introVideo.pause();
         introVideo.currentTime = 0;
+        introVideoWrap.classList.remove("is-playing");
       }, { once: true });
     }
   </script>
